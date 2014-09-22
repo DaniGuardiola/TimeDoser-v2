@@ -1,0 +1,374 @@
+* {
+	-webkit-app-region: no-drag;
+}
+/*FONTS*/
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(roboto.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(robotobold.woff) format('woff');
+}
+
+html,body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto';
+}
+#settings-box {
+	width: 100%;
+	height: 200px;
+	background: #D3C2DD;
+}
+#settings-box:not(.on) {
+	display: none;
+}
+#settings-box .row {
+	height: 100px;
+	width: 100%;
+	clear: both;
+	box-sizing: border-box;
+}
+#settings-box .row.border-bottom {
+	border-bottom: 1px solid #FFFFFF;
+}
+#settings-box .row.border-top {
+	border-top: 1px solid #FFFFFF;
+}
+#settings-box .row .setting {
+	cursor: pointer;
+	font-family: 'Roboto';
+	display: block;
+	height: 100%;
+	border: 0;
+	outline: 0;
+	background-color: #4B4B4B;
+	box-sizing: border-box;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 37px;
+	font-size: 30px;
+	color: #FFFFFF;
+	transition: background-color 0.2s;
+}
+#settings-box .row .setting:active {
+	background-color: #919191;
+}
+#settings-box .row .setting.noborder {
+	border: 0 !important;
+}
+#settings-box .row .setting.half {
+	width: 50%;
+}
+#settings-box .row .setting.left {
+	float: left;
+	border-right: 1px solid #FFFFFF;
+}
+#settings-box .row .setting.right {
+	float: right;
+	border-left: 1px solid #FFFFFF;
+}
+#setting-workTime {
+	background-color: #e84e40 !important;
+}
+#setting-workTime:active {
+	background-color: #FF968C !important;
+}
+#setting-breakTime {
+	background-color: #5af158 !important;
+}
+#setting-breakTime:active {
+	background-color: #AFFCAE !important;
+}
+#setting-notif,#setting-notif.on:active {
+	background-image: url(bell.svg);
+}
+#setting-notif.on,#setting-notif:active {
+	background-image: url(bell-on.svg);
+}
+#setting-audio,#setting-audio.on:active {
+	background-image: url(audio_off.svg);
+}
+#setting-audio.on,#setting-audio:active {
+	background-image: url(audio_on.svg);
+}
+#content {
+	height: 100px;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+#close-button {
+	z-index: 2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	opacity: 0.5;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	height: 24px;
+	width: 24px;
+	background-size: 70%;
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	background-image: url(close.svg);
+}
+#close-button:active {
+	opacity: 1;
+}
+#content {
+	-webkit-app-region: drag;
+	z-index: 1;
+	display: block;
+	-webkit-transition: background-color 0.4s;
+	-moz-transition: background-color 0.4s;
+	-ms-transition: background-color 0.4s;
+	-o-transition: background-color 0.4s;
+	transition: background-color 0.4s;
+}
+#content.standby {
+	background-color: #ab47bc;
+}
+#content.work {
+	background-color: #e84e40;
+}
+#content.break {
+	background-color: #5af158;
+}
+.circle-button {
+	cursor: pointer;
+	height: 65px;
+	width: 65px;
+	border: 0;
+	padding: 0;
+	border-radius: 50%;
+	outline: none;
+	font-family: 'Roboto';
+	font-weight: bold;
+	font-size: 20px;
+	color: #FFF;
+	-webkit-transition: background-color 0.1s, left 0.3s,color 0.5s;
+	-moz-transition: background-color 0.1s, left 0.3s,color 0.5s;
+	-ms-transition: background-color 0.1s, left 0.3s,color 0.5s;
+	-o-transition: background-color 0.1s, left 0.3s,color 0.5s;
+	transition: background-color 0.1s, left 0.3s,color 0.5s;
+}
+#standby-button {
+	cursor: pointer;
+	z-index: 100;
+	position: fixed;
+	left: 77.5px;
+	top: 17.5px;
+	background-color: #26c6da;
+	background-image: url(exclamation.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 10px;
+	-webkit-transition-timing-function: cubic-bezier(0.300, 0, 0.505, 0.995); /* older webkit */
+-webkit-transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); 
+   -moz-transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); 
+     -o-transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); 
+        transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); /* custom */
+}
+#standby-button:active {
+	background-color: #1297C2;
+}
+#standby-button.left-middle {
+	left: 47.5px;
+	color: transparent;
+}
+#standby-button.left {
+	left: 17.5px;
+	color: transparent;
+}
+#time-button {
+	z-index: 100;
+	position: fixed;
+	left: 17.5px;
+	top: 17.5px;
+	background-color: #26c6da;
+	-webkit-transition-timing-function: cubic-bezier(0.300, 0, 0.505, 0.995); /* older webkit */
+-webkit-transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); 
+   -moz-transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); 
+     -o-transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); 
+        transition-timing-function: cubic-bezier(0.300, -0.035, 0.505, 0.995); /* custom */
+}
+#time-button.right {
+	left: 77.5px;
+	color: transparent;
+}
+#collapse-button {
+	cursor: pointer;
+	border: 0;
+	padding: 0;
+	outline: none;
+	height: 100%;
+	width: 30px;
+	float: right;
+	background-color: transparent;
+	background-image: url(collapse.svg);
+	background-repeat: no-repeat;
+	background-size: 30px;
+	-webkit-transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s;
+	-ms-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+#collapse-button.hide {
+	opacity: 0;
+}
+#collapse-button:active {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#option-buttons-box {
+	display: none;
+	float: right;
+	margin-top: 5px;
+	margin-right: 5px;
+	height: 70px;
+	width: 30px;
+	-webkit-transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s;
+	-ms-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+#option-buttons-box.left {
+	float: left;
+	margin-left: 31px;
+	margin-top: 20px;
+}
+#option-buttons-box.two-items {
+	margin-top: 20px;
+}
+#option-buttons-box.hide {
+	opacity: 0;
+}
+#option-buttons-box.left #stop-button {
+	display: none;
+}
+@media screen and (max-width: 120px) {
+	#collapse-button {
+		opacity: 0.5;
+		border: 0;
+		-webkit-transform:rotate(180deg);
+		-moz-transform:rotate(180deg);
+		background-position: -6px 50%;
+	}
+	#collapse-button:hover {
+		opacity: 1;
+	}
+}
+@media screen and (min-width: 150px) {
+	#collapse-button,#option-buttons-box {
+		display: block;
+	}
+	#collapse-button {
+		border-left: 2px #FFF solid;
+		background-position: center;
+	}
+}
+#option-buttons-box.notify-action,#collapse-button.notify-action {
+	display: none;
+}
+#time-button.notify-action {
+	left: 47.5px;
+}
+#time-button.notify-action-break {
+	left: 30px;
+}
+.option-button {
+	cursor: pointer;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	width: 100%;
+	height: 30px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	outline: none;
+}
+#pin-button,#pin-button.on:active {
+	background-image: url(pin.svg);
+	background-size: 27px;
+}
+#pin-button.on,#pin-button:active {
+	background-image: url(pin-on.svg);
+}
+#done-button {
+	background-size: 20px;
+	background-image: url(done.svg);
+}
+#done-button:active {
+	background-size: 18px;
+}
+#skip-small-button {
+    background-size: 20px;
+	background-image: url(skip.svg);
+}
+#skip-small-button:active {
+    background-size: 18px;
+	background-image: url(skip.svg);
+}
+#config-button,#config-button.on:active {
+	background-size: 19px;
+	background-image: url(settings.svg);
+}
+#config-button.on,#config-button:active {
+	background-size: 24px;
+}
+#stop-button {
+	background-size: 33px;
+	background-image: url(stop.svg);
+}
+#stop-button:active {
+	background-image: url(stop-on.svg);
+}
+#time-button:active {
+	background-color: #129FCC;
+}
+#time-button.pause {
+	-webkit-animation: pause-time-button 1s;
+	-webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes pause-time-button {
+	0%   {background: #3FC0E9;}
+	50%   {background: #C0E7F3;}
+	100%   {background: #3FC0E9;}
+}
+#break-skip-button {
+    height: 100%;
+    width: 48px;
+    position: fixed;
+    right: 0;
+    border: 0;
+    border-left: 2px white solid;
+    border-right: 2px white solid;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    background-color: transparent;
+    display: none;
+    background-image: url(skip.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 32px;
+}
+#break-skip-button.on {
+  display: block;
+}
+#break-skip-button:active {
+  background-color: rgba(255, 255, 255, 0.5);
+}

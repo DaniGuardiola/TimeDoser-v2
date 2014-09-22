@@ -1,0 +1,111 @@
+{
+  "appname": {
+    "message": "TimeDoser",
+    "description": "Main title of the app"
+  },"appdescription": {
+    "message": "Dosifica tu tiempo",
+    "description": "Description of the app"
+  },"workNotifyTITLE": {
+    "message": "Hora de trabajar",
+    "description": "Title of work time notification"
+  },"workNotifyMSG": {
+    "message": "¡En marcha!",
+    "description": "Message of work time notification"
+  },"breakNotifyTITLE": {
+    "message": "A descansar",
+    "description": "Title of break time notification"
+  },"breakNotifyMSG": {
+    "message": "Relájate...",
+    "description": "Message of break time notification"
+  },"workPopupText": {
+    "message": "¡A trabajar!",
+    "description": "Initial message of work time popup"
+  },"donePopupText": {
+    "message": "¡Genial!",
+    "description": "Initial message of work time popup when done button on timer window is clicked"
+  },"breakPopupText": {
+    "message": "Toma aliento...",
+    "description": "Initial message of break time popup"
+  },"inputPopupText": {
+    "message": "¿Qué vas a hacer ahora?",
+    "description": "Message of popup input"
+  },"largeEnterPopupText": {
+    "message": "¡Adelante!",
+    "description": "Message shown on input enter when text is large"
+  },"firstEnterPopupText": {
+    "message": "¡A ",
+    "description": "Message shown on input enter before action name"
+  },"lastEnterPopupText": {
+    "message": "!",
+    "description": "Message shown on input enter after action name"
+  },"titleWork": {
+    "message": "trabajo",
+    "description": "The window will have the title {time (thismessage)} on work time"
+  },"titleBreak": {
+    "message": "descanso",
+    "description": "The window will have the title {time (thismessage)} on break time"
+  },"tts_locale": {
+    "message": "es_ES",
+    "description": "Text to speech: locale"
+  },"tts_pause_on": {
+    "message": "Pausa",
+    "description": "Text to speech: pause"
+  },"tts_pause_off": {
+    "message": "En marcha",
+    "description": "Text to speech: resume"
+  },"tts_break": {
+    "message": "Hora de descansar. Relájate.",
+    "description": "Text to speech: break time"
+  },"tts_work": {
+    "message": "¿Que vas, a hacer ahora?",
+    "description": "Text to speech: work time"
+  },"tts_done": {
+    "message": "Tarea completada.",
+    "description": "Text to speech: done"
+  },"tts_pin": {
+    "message": "Táim doser, bloqueado sobre otras aplicaciones",
+    "description": "Text to speech: always on top by command"
+  },"titletag_close_button": {
+    "message": "Cerrar",
+    "description": "Hint text when hovering close_button"
+  },"titletag_pin_button": {
+    "message": "Siempre delante",
+    "description": "Hint text when hovering pin_button"
+  },"titletag_config_button": {
+    "message": "Configuración",
+    "description": "Hint text when hovering config_button"
+  },"titletag_standby_button": {
+    "message": "Empezar",
+    "description": "Hint text when hovering standby_button"
+  },"titletag_time_button": {
+    "message": "Pausa",
+    "description": "Hint text when hovering time_button"
+  },"titletag_stop_button": {
+    "message": "Parar",
+    "description": "Hint text when hovering stop_button"
+  },"titletag_collapse_button": {
+    "message": "Mostrar / Ocultar botones",
+    "description": "Hint text when hovering collapse_button"
+  },"titletag_break_skip_button": {
+    "message": "Saltar este descanso",
+    "description": "Hint text when hovering break_skip_button"
+  },"titletag_skip_small_button": {
+    "message": "Saltar este descanso",
+    "description": "Hint text when hovering skip_small_button"
+  },"titletag_setting_workTime": {
+    "message": "Duración del tiempo de trabajo",
+    "description": "Hint text when hovering setting_workTime"
+  },"titletag_setting_breakTime": {
+    "message": "Duración del descanso",
+    "description": "Hint text when hovering setting_breakTime"
+  },"titletag_setting_notif": {
+    "message": "Notificaciones",
+    "description": "Hint text when hovering setting_notif"
+  },"titletag_setting_audio": {
+    "message": "Sonidos",
+    "description": "Hint text when hovering setting_audio"
+  },"titletag_template": {
+    "message": "",
+    "description": "Hint text when hovering TEMPLATE"
+  }
+}

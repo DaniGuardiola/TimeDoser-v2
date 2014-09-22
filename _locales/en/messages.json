@@ -1,0 +1,111 @@
+{
+  "appname": {
+    "message": "TimeDoser",
+    "description": "Main title of the app"
+  },"appdescription": {
+    "message": "Dosify your time",
+    "description": "Description of the app"
+  },"workNotifyTITLE": {
+    "message": "Work time",
+    "description": "Title of work time notification"
+  },"workNotifyMSG": {
+    "message": "Let's do things!",
+    "description": "Message of work time notification"
+  },"breakNotifyTITLE": {
+    "message": "Break time",
+    "description": "Title of break time notification"
+  },"breakNotifyMSG": {
+    "message": "Relax...",
+    "description": "Message of break time notification"
+  },"workPopupText": {
+    "message": "Time to produce!",
+    "description": "Initial message of work time popup"
+  },"donePopupText": {
+    "message": "Awesome!",
+    "description": "Initial message of work time popup when done button on timer window is clicked"
+  },"breakPopupText": {
+    "message": "Take a breath...",
+    "description": "Initial message of break time popup"
+  },"inputPopupText": {
+    "message": "What are you gonna do now?",
+    "description": "Message of popup input"
+  },"largeEnterPopupText": {
+    "message": "Let's go!",
+    "description": "Message shown on input enter when text is large"
+  },"firstEnterPopupText": {
+    "message": "Let's ",
+    "description": "Message shown on input enter before action name"
+  },"lastEnterPopupText": {
+    "message": "!",
+    "description": "Message shown on input enter after action name"
+  },"titleWork": {
+    "message": "work",
+    "description": "The window will have the title {time (thismessage)} on work time"
+  },"titleBreak": {
+    "message": "break",
+    "description": "The window will have the title {time (thismessage)} on break time"
+  },"tts_locale": {
+    "message": "en_US",
+    "description": "Text to speech: locale"
+  },"tts_pause_on": {
+    "message": "Paused",
+    "description": "Text to speech: pause"
+  },"tts_pause_off": {
+    "message": "Resumed",
+    "description": "Text to speech: resume"
+  },"tts_break": {
+    "message": "Break time. Relax.",
+    "description": "Text to speech: break time"
+  },"tts_work": {
+    "message": "What are you gonna do now?",
+    "description": "Text to speech: work time"
+  },"tts_done": {
+    "message": "Done task.",
+    "description": "Text to speech: done"
+  },"tts_pin": {
+    "message": "Window is now always on top",
+    "description": "Text to speech: always on top by command"
+  },"titletag_close_button": {
+    "message": "Close",
+    "description": "Hint text when hovering close_button"
+  },"titletag_pin_button": {
+    "message": "Switch always on top",
+    "description": "Hint text when hovering pin_button"
+  },"titletag_config_button": {
+    "message": "Settings",
+    "description": "Hint text when hovering config_button"
+  },"titletag_standby_button": {
+    "message": "Start",
+    "description": "Hint text when hovering standby_button"
+  },"titletag_time_button": {
+    "message": "Pause",
+    "description": "Hint text when hovering time_button"
+  },"titletag_stop_button": {
+    "message": "Stop",
+    "description": "Hint text when hovering stop_button"
+  },"titletag_collapse_button": {
+    "message": "Show / Hide buttons",
+    "description": "Hint text when hovering collapse_button"
+  },"titletag_break_skip_button": {
+    "message": "Skip this break",
+    "description": "Hint text when hovering break_skip_button"
+  },"titletag_skip_small_button": {
+    "message": "Skip this break",
+    "description": "Hint text when hovering skip_small_button"
+  },"titletag_setting_workTime": {
+    "message": "Work length",
+    "description": "Hint text when hovering setting_workTime"
+  },"titletag_setting_breakTime": {
+    "message": "Break length",
+    "description": "Hint text when hovering setting_breakTime"
+  },"titletag_setting_notif": {
+    "message": "Toggle notifications",
+    "description": "Hint text when hovering setting_notif"
+  },"titletag_setting_audio": {
+    "message": "Toggle audio advice",
+    "description": "Hint text when hovering setting_audio"
+  },"titletag_template": {
+    "message": "",
+    "description": "Hint text when hovering TEMPLATE"
+  }
+}

@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  -webkit-box-sizing: border-box;
+}
+#text-box {
+  margin-top: 0;
+  width: 100%;
+  height: 100px;
+  transition: height 0.5s;
+  overflow: hidden;	
+}
+#text-box.collapse {
+  height: 0;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(roboto.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(robotobold.woff) format('woff');
+}
+html,body {
+  height: 100%;
+  width: 100%;
+}
+#close-button {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  opacity: 0.5;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  height: 24px;
+  width: 24px;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-image: url(close.svg);
+}
+#close-button:active {
+  opacity: 1;
+}
+#text {	
+  text-align: center;
+  margin-top: 16px;
+  font-family: Roboto;
+  color: #FFF;
+  font-size: 48px;
+  width: 331px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+button.action {
+  float: left;
+  margin-left: 44px;
+  width: 312px;
+  height: 44px;
+  margin: 0;
+  font-family: Roboto;
+  font-size: 19px;
+  color: white;
+  background: transparent;
+}
+#input-task {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 25px;
+  background: transparent;
+  color: white;
+  padding: 0 30px;
+  -webkit-box-sizing: border-box;
+  transition: height 0.5s, font-size 0.5s;
+}
+#input-task.listed {  
+  font-size: 19px;
+  height: 44px;
+}
+#input-task.collapse {
+  display:block;
+  height: 0;
+}
+::-webkit-input-placeholder {
+  color: #000;
+  font-size: 19px;
+}
+.done-button {
+  opacity: 0;
+  float: right;
+  height: 44px;
+  width: 44px;
+  margin: 0;
+  color: white;
+  background-color: transparent;
+  border: 0px solid white;
+  background-image: url(done.svg);
+  background-position: center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+.done-button:hover {
+  background-color: rgba(255, 255, 255, 0.25);    
+}
+.done-button:active {
+  background-color: rgba(255, 255, 255, 0.5);    
+}
+.task-div {
+  padding-left: 44px;
+  border: 0px solid white;
+  width: 100%;
+  height: 44px;
+}
+.task-div:hover,.task-div:active {
+  border-width: 3px 0;
+}
+.task-div:hover button,.task-div:active button {
+  height: 38px;
+}
+.task-div:hover .done-button {
+  opacity: 1;
+}

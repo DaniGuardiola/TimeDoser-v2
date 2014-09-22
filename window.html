@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>TimeDoser</title>
+    <script src="js/script.js"></script>
+    <script src="js/ripple.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <audio id="audio-work"><source src="resources/audio/work.mp3" type="audio/mpeg"></audio>
+    <audio id="audio-break"><source src="resources/audio/break.mp3" type="audio/mpeg"></audio>
+    <div id="content" class="standby"></div>
+    <div id="settings-box">
+      <div class="row border-bottom">
+        <button id="setting-workTime" title="Work length" class="setting half left">25</button>
+        <button id="setting-breakTime" title="Break length" class="setting half right">5</button>
+      </div>
+      <div class="row border-top">
+        <button id="setting-notif" title="Toggle notifications" class="setting half left"></button>
+        <button id="setting-audio" title="Toggle audio advice" class="setting half right"></button>
+      </div>
+    </div>
+  </body>
+</html>
