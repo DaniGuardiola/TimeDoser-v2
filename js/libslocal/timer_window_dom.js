@@ -77,7 +77,7 @@ libs.timer_window_dom = {
             if (open) {
                 libs.timer_window_dom.actions.resize("settings");
                 document.getElementById("settings-box").classList.add("on");
-            } else if (open === false) {                
+            } else if (open === false) {
                 libs.timer_window_dom.actions.resize("large");
                 document.getElementById("settings-box").classList.remove("on");
             } else {
@@ -108,12 +108,18 @@ libs.timer_window_dom = {
                 }
                 if (settings.audio) {
                     document.getElementById("setting-audio").classList.add("on");
-                }                
+                }
             });
             if (libs.timer_window_dom.data.settingsSet) {} else {
                 libs.timer_window_dom.data.settingsSet = true;
                 document.getElementById("setting-workTime").addEventListener("click", function(){
-                    if (libs.settings.data.workTime<30) {
+                    if (libs.settings.data.workTime<20) {
+                        libs.settings.change("workTime",20);
+                        document.getElementById("setting-workTime").innerText = 20;
+                    } else if (libs.settings.data.workTime<25) {
+                        libs.settings.change("workTime",25);
+                        document.getElementById("setting-workTime").innerText = 25;
+                    } else if (libs.settings.data.workTime<30) {
                         libs.settings.change("workTime",30);
                         document.getElementById("setting-workTime").innerText = 30;
                     } else if (libs.settings.data.workTime<35) {
@@ -128,9 +134,15 @@ libs.timer_window_dom = {
                     } else if (libs.settings.data.workTime<50) {
                         libs.settings.change("workTime",50);
                         document.getElementById("setting-workTime").innerText = 50;
-                    } else if (libs.settings.data.workTime>=50) {
-                        libs.settings.change("workTime",25);
-                        document.getElementById("setting-workTime").innerText = 25;
+                    } else if (libs.settings.data.workTime<55) {
+                        libs.settings.change("workTime",55);
+                        document.getElementById("setting-workTime").innerText = 55;
+                    } else if (libs.settings.data.workTime<60) {
+                        libs.settings.change("workTime",60);
+                        document.getElementById("setting-workTime").innerText = 60;
+                    } else if (libs.settings.data.workTime>=60) {
+                        libs.settings.change("workTime",15);
+                        document.getElementById("setting-workTime").innerText = 15;
                     }
                 });
                 document.getElementById("setting-breakTime").addEventListener("click", function(){
