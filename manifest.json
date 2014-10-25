@@ -6,7 +6,7 @@
     },
     "manifest_version": 2,
     "name": "__MSG_appname__",
-    "version": "0.0.4.2",
+    "version": "0.0.4.4",
     "description": "__MSG_appdescription__",
     "icons": {
         "128": "img/app/icon-128.png"
