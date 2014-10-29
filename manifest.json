@@ -1,52 +1,22 @@
 {
-    "app": {
-        "background": {
-            "scripts": ["js/background.js"]
-        }
-    },
-    "manifest_version": 2,
-    "name": "__MSG_appname__",
-    "version": "0.0.4.4",
-    "description": "__MSG_appdescription__",
-    "icons": {
-        "128": "img/app/icon-128.png"
-    },
-    "commands": {
-        "start-stop-command": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+0"
-            },
-            "description": "Start the timer or stop it if running",
-            "global": true
-        },
-        "pause-command": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+9"
-            },
-            "description": "Pause/resume timer",
-            "global": true
-        },
-        "done-command": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+8"
-            },
-            "description": "Check current task as done",
-            "global": true
-        },
-        "alwaysOnTop-command": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+7"
-            },
-            "description": "Switch always on top",
-            "global": true
-        }
-    },
-    "permissions": [
-        "app.window.alwaysOnTop",
-        "notifications",
-        "storage",
-        "tts"
-    ],
-    "offline_enabled": true,
-    "default_locale": "en"
+  "manifest_version": 2,
+  "name": "Timedoser",
+  "short_name": "Timedoser",
+  "description": "Description for Timedoser",
+
+  "version": "0.0.1",
+
+  "icons": {
+    "16": "assets/icon_16.png",
+    "128": "assets/icon_128.png"
+  },
+
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "permissions": [
+    "notifications"
+  ]
 }

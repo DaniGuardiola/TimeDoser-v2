@@ -1,11 +1,12 @@
 libs.notifications = {
-    create: function(what) {
+    createFromTemplate: function(what) {
+      if (what) {
         if (what === "work") {
             var opt = {
                 type: "basic",
-                title: chrome.i18n.getMessage("workNotifyTITLE"),
-                message: chrome.i18n.getMessage("workNotifyMSG"),
-                iconUrl: "img/shared/work.svg"
+                title: "probandto putasss",
+                message: "probando putasss",
+                iconUrl: "work.svg"
             };
         } else if (what === "break") {
             var opt = {
@@ -25,5 +26,7 @@ libs.notifications = {
         chrome.notifications.clear(what, function() {});
         chrome.notifications.create(what, opt, function(id) {});
         console.log("[notifications]: [create] Creating notification: " + what);
+        alert('NOTIFICACION');
+      }
     }
 };

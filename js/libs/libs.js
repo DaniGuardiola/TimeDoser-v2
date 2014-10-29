@@ -1,6 +1,6 @@
 var libs = {
     vars: {
-        root: "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/"
+        root: "/"
     },
     call: function(call, args) {
         var callOK = "libs." + call;
