@@ -2,10 +2,16 @@ libs.tools = {
     removeElementById: function(id) {
         return (elem = document.getElementById(id)).parentNode.removeChild(elem);
     },
-    executeFunctionByName: function(functionName, context, args) {
+    removeElementByQuery: function(query) {
+        return (elem = document.querySelector(query)).parentNode.removeChild(elem);
+    },
+    executeFunctionByName: function(functionName, args, context) {
         console.log(args);
         var namespaces = functionName.split(".");
         var func = namespaces.pop();
+        if (!context) {
+          context = window;
+        }
         for (var i = 0; i < namespaces.length; i++) {
             context = context[namespaces[i]];
         }

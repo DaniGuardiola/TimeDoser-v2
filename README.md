@@ -1,4 +1,0 @@
-TimeDoser
-=========
-
-Dosify your time
