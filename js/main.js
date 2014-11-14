@@ -12,6 +12,10 @@ function closeSidemenu(){
 	document.querySelector('md-sidemenu').close();
 }
 
+function hiCarlos(){
+	console.log("Hi Carlos what's up :D");
+}
+
 function loadPage(page){
 	if (page === "now") {
 		closeSidemenu();

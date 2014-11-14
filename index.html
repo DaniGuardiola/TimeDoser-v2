@@ -10,26 +10,79 @@
 <body md-color="purple-100">
 
   <md-toolbar md-height="x1" md-color="purple" md-shadow="shadow-1">
-  	<md-icon-button md-action="custom: openSidemenu"><md-icon md-image="menu" md-fill="white"></md-icon></md-icon-button>
-  	<div todo-find-a-name></div>
+    <md-row>
+    	<md-icon-button md-action="custom: openSidemenu"><md-icon md-image="menu" md-fill="white"></md-icon></md-icon-button>
+      <md-text md-typo="title">Now</md-text>
+      <md-space></md-space>
+      <md-icon-button md-action="custom: closeSidemenu"><md-icon md-image="play_circle_outline" md-fill="white"></md-icon></md-icon-button>
+    </md-row>
   </md-toolbar>
+
   <md-sidemenu md-color="white" md-shadow="shadow-1">
     <md-list md-action="custom: menuHandler">
+
       <md-tile data-page="now">
         <md-icon md-image="play_circle_outline"></md-icon>
         <md-text>Now</md-text>
       </md-tile>
+
       <md-tile data-page="plan">
         <md-icon md-image="fast_forward"></md-icon>
         <md-text>Plan</md-text>
       </md-tile>
+
       <md-tile data-page="history">
         <md-icon md-image="history"></md-icon>
         <md-text>History</md-text>
       </md-tile>
     </md-list>
+
   </md-sidemenu>
-  <md-content></md-content>
+
+  <md-content>
+    <md-paper>
+      <md-list>
+
+        <md-tile>
+          <md-icon md-image="forward"></md-icon>
+          <md-text>Close the bed</md-text>
+          <md-icon md-image="done"></md-icon>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="forward"></md-icon>
+          <md-text>Take breakfast</md-text>
+          <md-icon md-image="done"></md-icon>
+        </md-tile>
+
+        <md-tile>
+          <md-text md-font-color="grey">Upcoming</md-text>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="access_time"></md-icon>
+          <md-text>Take a shower<span md-font-color="grey"> - 10m</span></md-text>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="forward"></md-icon>
+          <md-text>Tidy up bathroom</md-text>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="directions_bus"></md-icon>
+          <md-text>Travel in bus<span md-font-color="grey"> - 8:15 45m</span></md-text>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="work"></md-icon>
+          <md-text>Work at Data Trends<span md-font-color="grey"> - 9:00 2h</span></md-text>
+        </md-tile>
+
+      </md-list>
+
+    </md-paper>
+  </md-content>
 
   <script src="js/main.js"></script>
   <script src="materializer/materializer.js"></script>
