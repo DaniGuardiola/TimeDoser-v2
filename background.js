@@ -13,9 +13,9 @@ chrome.app.runtime.onLaunched.addListener(function() {
     'index.html',
     {
       frame: {
-      	color: "#7b1fa2",
-      	activeColor: "#7b1fa2",
-      	inactiveColor: "#8e24aa"
+      	color: "#0097a7",
+      	activeColor: "#0097a7",
+      	inactiveColor: "#00acc1"
       },
       innerBounds: {width: 320, height: 533}
     }

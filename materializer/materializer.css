@@ -1303,7 +1303,7 @@ md-snackbar > md-button {
 md-content {
     display: block;
     z-index: 0;
-    height: auto;
+    height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
@@ -1312,138 +1312,139 @@ md-content {
     -moz-transition: margin-top 0.25s;
     -o-transition: margin-top 0.25s;
     transition: margin-top 0.25s;
+    overflow-x: hidden;
 }
 
 @media only screen and (max-width: 320px),
 only screen and (min-width: 320px) and (max-width: 768px) {
-    md-toolbar:not([md-height]) ~ md-content:not([noresponsive]) {
+    md-toolbar:not([md-height]) ~ md-content> md-page:not([noresponsive]) {
         margin-top: 56px;
     }
 
-    md-toolbar[md-height=x1] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x1] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 56px;
     }
 
-    md-toolbar[md-height=x2] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x2] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 112px;
     }
 
-    md-toolbar[md-height=x3] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x3] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 168px;
     }
 
-    md-toolbar[md-height=x4] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x4] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 224px;
     }
 
-    md-toolbar[md-height=x5] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x5] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 280px;
     }
 
-    md-toolbar[md-height=x6] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x6] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 336px;
     }
 
-    md-toolbar[md-height=x7] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x7] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 392px;
     }
 
-    md-toolbar[md-height=x8] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x8] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 448px;
     }
 
-    md-toolbar[md-height=x9] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x9] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 504px;
     }
 
-    md-toolbar[md-height=x10] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x10] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 560px;
     }
 
-    md-toolbar[md-height=x11] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x11] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 616px;
     }
 
-    md-toolbar[md-height=x12] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x12] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 672px;
     }
 
-    md-toolbar[md-height=x13] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x13] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 728px;
     }
 
-    md-toolbar[md-height=x14] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x14] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 784px;
     }
 
-    md-toolbar[md-height=x15] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x15] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 840px;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px),
 only screen and (min-width: 992px) {
-    md-toolbar:not([md-height]) ~ md-content:not([noresponsive]) {
+    md-toolbar:not([md-height]) ~ md-content> md-page:not([noresponsive]) {
         margin-top: 64px;
     }
 
-    md-toolbar[md-height=x1] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x1] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 64px;
     }
 
-    md-toolbar[md-height=x2] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x2] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 128px;
     }
 
-    md-toolbar[md-height=x3] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x3] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 192px;
     }
 
-    md-toolbar[md-height=x4] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x4] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 256px;
     }
 
-    md-toolbar[md-height=x5] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x5] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 320px;
     }
 
-    md-toolbar[md-height=x6] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x6] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 384px;
     }
 
-    md-toolbar[md-height=x7] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x7] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 448px;
     }
 
-    md-toolbar[md-height=x8] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x8] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 512px;
     }
 
-    md-toolbar[md-height=x9] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x9] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 576px;
     }
 
-    md-toolbar[md-height=x10] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x10] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 640px;
     }
 
-    md-toolbar[md-height=x11] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x11] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 704px;
     }
 
-    md-toolbar[md-height=x12] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x12] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 768px;
     }
 
-    md-toolbar[md-height=x13] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x13] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 832px;
     }
 
-    md-toolbar[md-height=x14] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x14] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 896px;
     }
 
-    md-toolbar[md-height=x15] ~ md-content:not([noresponsive]) {
+    md-toolbar[md-height=x15] ~ md-content> md-page:not([noresponsive]) {
         margin-top: 960px;
     }
 }
@@ -1474,6 +1475,11 @@ md-icon-button {
     width: 48px;
     height: 48px;
     cursor: pointer;
+    border-radius: 50%;
+    -webkit-transition: background-color 0.05s;
+    -moz-transition: background-color 0.05s;
+    -o-transition: background-color 0.05s;
+    transition: background-color 0.05s;
 }
 md-icon {
     position: relative;
@@ -1483,44 +1489,44 @@ md-icon {
     margin: 12px;
 }
 
-md-icon[md-fill~=red-c50] {
+md-icon[md-fill~=red-50] {
     fill: #ffebee;
 }
 
-md-icon[md-fill~=red-c100] {
+md-icon[md-fill~=red-100] {
     fill: #ffcdd2;
 }
 
-md-icon[md-fill~=red-c200] {
+md-icon[md-fill~=red-200] {
     fill: #ef9a9a;
 }
 
-md-icon[md-fill~=red-c300] {
+md-icon[md-fill~=red-300] {
     fill: #e57373;
 }
 
-md-icon[md-fill~=red-c400] {
+md-icon[md-fill~=red-400] {
     fill: #ef5350;
 }
 
 md-icon[md-fill~=red],
-md-icon[md-fill~=red-c500] {
+md-icon[md-fill~=red-500] {
     fill: #f44336;
 }
 
-md-icon[md-fill~=red-c600] {
+md-icon[md-fill~=red-600] {
     fill: #e53935;
 }
 
-md-icon[md-fill~=red-c700] {
+md-icon[md-fill~=red-700] {
     fill: #d32f2f;
 }
 
-md-icon[md-fill~=red-c800] {
+md-icon[md-fill~=red-800] {
     fill: #c62828;
 }
 
-md-icon[md-fill~=red-c900] {
+md-icon[md-fill~=red-900] {
     fill: #b71c1c;
 }
 
@@ -1540,44 +1546,44 @@ md-icon[md-fill~=red-a700] {
     fill: #d50000;
 }
 
-md-icon[md-fill~=pink-c50] {
+md-icon[md-fill~=pink-50] {
     fill: #fce4ec;
 }
 
-md-icon[md-fill~=pink-c100] {
+md-icon[md-fill~=pink-100] {
     fill: #f8bbd0;
 }
 
-md-icon[md-fill~=pink-c200] {
+md-icon[md-fill~=pink-200] {
     fill: #f48fb1;
 }
 
-md-icon[md-fill~=pink-c300] {
+md-icon[md-fill~=pink-300] {
     fill: #f06292;
 }
 
-md-icon[md-fill~=pink-c400] {
+md-icon[md-fill~=pink-400] {
     fill: #ec407a;
 }
 
 md-icon[md-fill~=pink],
-md-icon[md-fill~=pink-c500] {
+md-icon[md-fill~=pink-500] {
     fill: #e91e63;
 }
 
-md-icon[md-fill~=pink-c600] {
+md-icon[md-fill~=pink-600] {
     fill: #d81b60;
 }
 
-md-icon[md-fill~=pink-c700] {
+md-icon[md-fill~=pink-700] {
     fill: #c2185b;
 }
 
-md-icon[md-fill~=pink-c800] {
+md-icon[md-fill~=pink-800] {
     fill: #ad1457;
 }
 
-md-icon[md-fill~=pink-c900] {
+md-icon[md-fill~=pink-900] {
     fill: #880e4f;
 }
 
@@ -1597,44 +1603,44 @@ md-icon[md-fill~=pink-a700] {
     fill: #c51162;
 }
 
-md-icon[md-fill~=purple-c50] {
+md-icon[md-fill~=purple-50] {
     fill: #f3e5f5;
 }
 
-md-icon[md-fill~=purple-c100] {
+md-icon[md-fill~=purple-100] {
     fill: #e1bee7;
 }
 
-md-icon[md-fill~=purple-c200] {
+md-icon[md-fill~=purple-200] {
     fill: #ce93d8;
 }
 
-md-icon[md-fill~=purple-c300] {
+md-icon[md-fill~=purple-300] {
     fill: #ba68c8;
 }
 
-md-icon[md-fill~=purple-c400] {
+md-icon[md-fill~=purple-400] {
     fill: #ab47bc;
 }
 
 md-icon[md-fill~=purple],
-md-icon[md-fill~=purple-c500] {
+md-icon[md-fill~=purple-500] {
     fill: #9c27b0;
 }
 
-md-icon[md-fill~=purple-c600] {
+md-icon[md-fill~=purple-600] {
     fill: #8e24aa;
 }
 
-md-icon[md-fill~=purple-c700] {
+md-icon[md-fill~=purple-700] {
     fill: #7b1fa2;
 }
 
-md-icon[md-fill~=purple-c800] {
+md-icon[md-fill~=purple-800] {
     fill: #6a1b9a;
 }
 
-md-icon[md-fill~=purple-c900] {
+md-icon[md-fill~=purple-900] {
     fill: #4a148c;
 }
 
@@ -1654,44 +1660,44 @@ md-icon[md-fill~=purple-a700] {
     fill: #aa00ff;
 }
 
-md-icon[md-fill~=deep-purple-c50] {
+md-icon[md-fill~=deep-purple-50] {
     fill: #ede7f6;
 }
 
-md-icon[md-fill~=deep-purple-c100] {
+md-icon[md-fill~=deep-purple-100] {
     fill: #d1c4e9;
 }
 
-md-icon[md-fill~=deep-purple-c200] {
+md-icon[md-fill~=deep-purple-200] {
     fill: #b39ddb;
 }
 
-md-icon[md-fill~=deep-purple-c300] {
+md-icon[md-fill~=deep-purple-300] {
     fill: #9575cd;
 }
 
-md-icon[md-fill~=deep-purple-c400] {
+md-icon[md-fill~=deep-purple-400] {
     fill: #7e57c2;
 }
 
 md-icon[md-fill~=deep-purple],
-md-icon[md-fill~=deep-purple-c500] {
+md-icon[md-fill~=deep-purple-500] {
     fill: #673ab7;
 }
 
-md-icon[md-fill~=deep-purple-c600] {
+md-icon[md-fill~=deep-purple-600] {
     fill: #5e35b1;
 }
 
-md-icon[md-fill~=deep-purple-c700] {
+md-icon[md-fill~=deep-purple-700] {
     fill: #512da8;
 }
 
-md-icon[md-fill~=deep-purple-c800] {
+md-icon[md-fill~=deep-purple-800] {
     fill: #4527a0;
 }
 
-md-icon[md-fill~=deep-purple-c900] {
+md-icon[md-fill~=deep-purple-900] {
     fill: #311b92;
 }
 
@@ -1711,44 +1717,44 @@ md-icon[md-fill~=deep-purple-a700] {
     fill: #6200ea;
 }
 
-md-icon[md-fill~=indigo-c50] {
+md-icon[md-fill~=indigo-50] {
     fill: #e8eaf6;
 }
 
-md-icon[md-fill~=indigo-c100] {
+md-icon[md-fill~=indigo-100] {
     fill: #c5cae9;
 }
 
-md-icon[md-fill~=indigo-c200] {
+md-icon[md-fill~=indigo-200] {
     fill: #9fa8da;
 }
 
-md-icon[md-fill~=indigo-c300] {
+md-icon[md-fill~=indigo-300] {
     fill: #7986cb;
 }
 
-md-icon[md-fill~=indigo-c400] {
+md-icon[md-fill~=indigo-400] {
     fill: #5c6bc0;
 }
 
 md-icon[md-fill~=indigo],
-md-icon[md-fill~=indigo-c500] {
+md-icon[md-fill~=indigo-500] {
     fill: #3f51b5;
 }
 
-md-icon[md-fill~=indigo-c600] {
+md-icon[md-fill~=indigo-600] {
     fill: #3949ab;
 }
 
-md-icon[md-fill~=indigo-c700] {
+md-icon[md-fill~=indigo-700] {
     fill: #303f9f;
 }
 
-md-icon[md-fill~=indigo-c800] {
+md-icon[md-fill~=indigo-800] {
     fill: #283593;
 }
 
-md-icon[md-fill~=indigo-c900] {
+md-icon[md-fill~=indigo-900] {
     fill: #1a237e;
 }
 
@@ -1768,44 +1774,44 @@ md-icon[md-fill~=indigo-a700] {
     fill: #304ffe;
 }
 
-md-icon[md-fill~=blue-c50] {
+md-icon[md-fill~=blue-50] {
     fill: #e3f2fd;
 }
 
-md-icon[md-fill~=blue-c100] {
+md-icon[md-fill~=blue-100] {
     fill: #bbdefb;
 }
 
-md-icon[md-fill~=blue-c200] {
+md-icon[md-fill~=blue-200] {
     fill: #90caf9;
 }
 
-md-icon[md-fill~=blue-c300] {
+md-icon[md-fill~=blue-300] {
     fill: #64b5f6;
 }
 
-md-icon[md-fill~=blue-c400] {
+md-icon[md-fill~=blue-400] {
     fill: #42a5f5;
 }
 
 md-icon[md-fill~=blue],
-md-icon[md-fill~=blue-c500] {
+md-icon[md-fill~=blue-500] {
     fill: #2196f3;
 }
 
-md-icon[md-fill~=blue-c600] {
+md-icon[md-fill~=blue-600] {
     fill: #1e88e5;
 }
 
-md-icon[md-fill~=blue-c700] {
+md-icon[md-fill~=blue-700] {
     fill: #1976d2;
 }
 
-md-icon[md-fill~=blue-c800] {
+md-icon[md-fill~=blue-800] {
     fill: #1565c0;
 }
 
-md-icon[md-fill~=blue-c900] {
+md-icon[md-fill~=blue-900] {
     fill: #0d47a1;
 }
 
@@ -1825,44 +1831,44 @@ md-icon[md-fill~=blue-a700] {
     fill: #2962ff;
 }
 
-md-icon[md-fill~=light-blue-c50] {
+md-icon[md-fill~=light-blue-50] {
     fill: #e1f5fe;
 }
 
-md-icon[md-fill~=light-blue-c100] {
+md-icon[md-fill~=light-blue-100] {
     fill: #b3e5fc;
 }
 
-md-icon[md-fill~=light-blue-c200] {
+md-icon[md-fill~=light-blue-200] {
     fill: #81d4fa;
 }
 
-md-icon[md-fill~=light-blue-c300] {
+md-icon[md-fill~=light-blue-300] {
     fill: #4fc3f7;
 }
 
-md-icon[md-fill~=light-blue-c400] {
+md-icon[md-fill~=light-blue-400] {
     fill: #29b6f6;
 }
 
 md-icon[md-fill~=light-blue],
-md-icon[md-fill~=light-blue-c500] {
+md-icon[md-fill~=light-blue-500] {
     fill: #03a9f4;
 }
 
-md-icon[md-fill~=light-blue-c600] {
+md-icon[md-fill~=light-blue-600] {
     fill: #039be5;
 }
 
-md-icon[md-fill~=light-blue-c700] {
+md-icon[md-fill~=light-blue-700] {
     fill: #0288d1;
 }
 
-md-icon[md-fill~=light-blue-c800] {
+md-icon[md-fill~=light-blue-800] {
     fill: #0277bd;
 }
 
-md-icon[md-fill~=light-blue-c900] {
+md-icon[md-fill~=light-blue-900] {
     fill: #01579b;
 }
 
@@ -1882,44 +1888,44 @@ md-icon[md-fill~=light-blue-a700] {
     fill: #0091ea;
 }
 
-md-icon[md-fill~=cyan-c50] {
+md-icon[md-fill~=cyan-50] {
     fill: #e0f7fa;
 }
 
-md-icon[md-fill~=cyan-c100] {
+md-icon[md-fill~=cyan-100] {
     fill: #b2ebf2;
 }
 
-md-icon[md-fill~=cyan-c200] {
+md-icon[md-fill~=cyan-200] {
     fill: #80deea;
 }
 
-md-icon[md-fill~=cyan-c300] {
+md-icon[md-fill~=cyan-300] {
     fill: #4dd0e1;
 }
 
-md-icon[md-fill~=cyan-c400] {
+md-icon[md-fill~=cyan-400] {
     fill: #26c6da;
 }
 
 md-icon[md-fill~=cyan],
-md-icon[md-fill~=cyan-c500] {
+md-icon[md-fill~=cyan-500] {
     fill: #00bcd4;
 }
 
-md-icon[md-fill~=cyan-c600] {
+md-icon[md-fill~=cyan-600] {
     fill: #00acc1;
 }
 
-md-icon[md-fill~=cyan-c700] {
+md-icon[md-fill~=cyan-700] {
     fill: #0097a7;
 }
 
-md-icon[md-fill~=cyan-c800] {
+md-icon[md-fill~=cyan-800] {
     fill: #00838f;
 }
 
-md-icon[md-fill~=cyan-c900] {
+md-icon[md-fill~=cyan-900] {
     fill: #006064;
 }
 
@@ -1939,44 +1945,44 @@ md-icon[md-fill~=cyan-a700] {
     fill: #00b8d4;
 }
 
-md-icon[md-fill~=teal-c50] {
+md-icon[md-fill~=teal-50] {
     fill: #e0f2f1;
 }
 
-md-icon[md-fill~=teal-c100] {
+md-icon[md-fill~=teal-100] {
     fill: #b2dfdb;
 }
 
-md-icon[md-fill~=teal-c200] {
+md-icon[md-fill~=teal-200] {
     fill: #80cbc4;
 }
 
-md-icon[md-fill~=teal-c300] {
+md-icon[md-fill~=teal-300] {
     fill: #4db6ac;
 }
 
-md-icon[md-fill~=teal-c400] {
+md-icon[md-fill~=teal-400] {
     fill: #26a69a;
 }
 
 md-icon[md-fill~=teal],
-md-icon[md-fill~=teal-c500] {
+md-icon[md-fill~=teal-500] {
     fill: #009688;
 }
 
-md-icon[md-fill~=teal-c600] {
+md-icon[md-fill~=teal-600] {
     fill: #00897b;
 }
 
-md-icon[md-fill~=teal-c700] {
+md-icon[md-fill~=teal-700] {
     fill: #00796b;
 }
 
-md-icon[md-fill~=teal-c800] {
+md-icon[md-fill~=teal-800] {
     fill: #00695c;
 }
 
-md-icon[md-fill~=teal-c900] {
+md-icon[md-fill~=teal-900] {
     fill: #004d40;
 }
 
@@ -1996,44 +2002,44 @@ md-icon[md-fill~=teal-a700] {
     fill: #00bfa5;
 }
 
-md-icon[md-fill~=green-c50] {
+md-icon[md-fill~=green-50] {
     fill: #e8f5e9;
 }
 
-md-icon[md-fill~=green-c100] {
+md-icon[md-fill~=green-100] {
     fill: #c8e6c9;
 }
 
-md-icon[md-fill~=green-c200] {
+md-icon[md-fill~=green-200] {
     fill: #a5d6a7;
 }
 
-md-icon[md-fill~=green-c300] {
+md-icon[md-fill~=green-300] {
     fill: #81c784;
 }
 
-md-icon[md-fill~=green-c400] {
+md-icon[md-fill~=green-400] {
     fill: #66bb6a;
 }
 
 md-icon[md-fill~=green],
-md-icon[md-fill~=green-c500] {
+md-icon[md-fill~=green-500] {
     fill: #4caf50;
 }
 
-md-icon[md-fill~=green-c600] {
+md-icon[md-fill~=green-600] {
     fill: #43a047;
 }
 
-md-icon[md-fill~=green-c700] {
+md-icon[md-fill~=green-700] {
     fill: #388e3c;
 }
 
-md-icon[md-fill~=green-c800] {
+md-icon[md-fill~=green-800] {
     fill: #2e7d32;
 }
 
-md-icon[md-fill~=green-c900] {
+md-icon[md-fill~=green-900] {
     fill: #1b5e20;
 }
 
@@ -2053,44 +2059,44 @@ md-icon[md-fill~=green-a700] {
     fill: #00c853;
 }
 
-md-icon[md-fill~=light-green-c50] {
+md-icon[md-fill~=light-green-50] {
     fill: #f1f8e9;
 }
 
-md-icon[md-fill~=light-green-c100] {
+md-icon[md-fill~=light-green-100] {
     fill: #dcedc8;
 }
 
-md-icon[md-fill~=light-green-c200] {
+md-icon[md-fill~=light-green-200] {
     fill: #c5e1a5;
 }
 
-md-icon[md-fill~=light-green-c300] {
+md-icon[md-fill~=light-green-300] {
     fill: #aed581;
 }
 
-md-icon[md-fill~=light-green-c400] {
+md-icon[md-fill~=light-green-400] {
     fill: #9ccc65;
 }
 
 md-icon[md-fill~=light-green],
-md-icon[md-fill~=light-green-c500] {
+md-icon[md-fill~=light-green-500] {
     fill: #8bc34a;
 }
 
-md-icon[md-fill~=light-green-c600] {
+md-icon[md-fill~=light-green-600] {
     fill: #7cb342;
 }
 
-md-icon[md-fill~=light-green-c700] {
+md-icon[md-fill~=light-green-700] {
     fill: #689f38;
 }
 
-md-icon[md-fill~=light-green-c800] {
+md-icon[md-fill~=light-green-800] {
     fill: #558b2f;
 }
 
-md-icon[md-fill~=light-green-c900] {
+md-icon[md-fill~=light-green-900] {
     fill: #33691e;
 }
 
@@ -2110,44 +2116,44 @@ md-icon[md-fill~=light-green-a700] {
     fill: #64dd17;
 }
 
-md-icon[md-fill~=lime-c50] {
+md-icon[md-fill~=lime-50] {
     fill: #f9fbe7;
 }
 
-md-icon[md-fill~=lime-c100] {
+md-icon[md-fill~=lime-100] {
     fill: #f0f4c3;
 }
 
-md-icon[md-fill~=lime-c200] {
+md-icon[md-fill~=lime-200] {
     fill: #e6ee9c;
 }
 
-md-icon[md-fill~=lime-c300] {
+md-icon[md-fill~=lime-300] {
     fill: #dce775;
 }
 
-md-icon[md-fill~=lime-c400] {
+md-icon[md-fill~=lime-400] {
     fill: #d4e157;
 }
 
 md-icon[md-fill~=lime],
-md-icon[md-fill~=lime-c500] {
+md-icon[md-fill~=lime-500] {
     fill: #cddc39;
 }
 
-md-icon[md-fill~=lime-c600] {
+md-icon[md-fill~=lime-600] {
     fill: #c0ca33;
 }
 
-md-icon[md-fill~=lime-c700] {
+md-icon[md-fill~=lime-700] {
     fill: #afb42b;
 }
 
-md-icon[md-fill~=lime-c800] {
+md-icon[md-fill~=lime-800] {
     fill: #9e9d24;
 }
 
-md-icon[md-fill~=lime-c900] {
+md-icon[md-fill~=lime-900] {
     fill: #827717;
 }
 
@@ -2167,44 +2173,44 @@ md-icon[md-fill~=lime-a700] {
     fill: #aeea00;
 }
 
-md-icon[md-fill~=yellow-c50] {
+md-icon[md-fill~=yellow-50] {
     fill: #fffde7;
 }
 
-md-icon[md-fill~=yellow-c100] {
+md-icon[md-fill~=yellow-100] {
     fill: #fff9c4;
 }
 
-md-icon[md-fill~=yellow-c200] {
+md-icon[md-fill~=yellow-200] {
     fill: #fff59d;
 }
 
-md-icon[md-fill~=yellow-c300] {
+md-icon[md-fill~=yellow-300] {
     fill: #fff176;
 }
 
-md-icon[md-fill~=yellow-c400] {
+md-icon[md-fill~=yellow-400] {
     fill: #ffee58;
 }
 
 md-icon[md-fill~=yellow],
-md-icon[md-fill~=yellow-c500] {
+md-icon[md-fill~=yellow-500] {
     fill: #ffeb3b;
 }
 
-md-icon[md-fill~=yellow-c600] {
+md-icon[md-fill~=yellow-600] {
     fill: #fdd835;
 }
 
-md-icon[md-fill~=yellow-c700] {
+md-icon[md-fill~=yellow-700] {
     fill: #fbc02d;
 }
 
-md-icon[md-fill~=yellow-c800] {
+md-icon[md-fill~=yellow-800] {
     fill: #f9a825;
 }
 
-md-icon[md-fill~=yellow-c900] {
+md-icon[md-fill~=yellow-900] {
     fill: #f57f17;
 }
 
@@ -2224,44 +2230,44 @@ md-icon[md-fill~=yellow-a700] {
     fill: #ffd600;
 }
 
-md-icon[md-fill~=amber-c50] {
+md-icon[md-fill~=amber-50] {
     fill: #fff8e1;
 }
 
-md-icon[md-fill~=amber-c100] {
+md-icon[md-fill~=amber-100] {
     fill: #ffecb3;
 }
 
-md-icon[md-fill~=amber-c200] {
+md-icon[md-fill~=amber-200] {
     fill: #ffe082;
 }
 
-md-icon[md-fill~=amber-c300] {
+md-icon[md-fill~=amber-300] {
     fill: #ffd54f;
 }
 
-md-icon[md-fill~=amber-c400] {
+md-icon[md-fill~=amber-400] {
     fill: #ffca28;
 }
 
 md-icon[md-fill~=amber],
-md-icon[md-fill~=amber-c500] {
+md-icon[md-fill~=amber-500] {
     fill: #ffc107;
 }
 
-md-icon[md-fill~=amber-c600] {
+md-icon[md-fill~=amber-600] {
     fill: #ffb300;
 }
 
-md-icon[md-fill~=amber-c700] {
+md-icon[md-fill~=amber-700] {
     fill: #ffa000;
 }
 
-md-icon[md-fill~=amber-c800] {
+md-icon[md-fill~=amber-800] {
     fill: #ff8f00;
 }
 
-md-icon[md-fill~=amber-c900] {
+md-icon[md-fill~=amber-900] {
     fill: #ff6f00;
 }
 
@@ -2281,44 +2287,44 @@ md-icon[md-fill~=amber-a700] {
     fill: #ffab00;
 }
 
-md-icon[md-fill~=orange-c50] {
+md-icon[md-fill~=orange-50] {
     fill: #fff3e0;
 }
 
-md-icon[md-fill~=orange-c100] {
+md-icon[md-fill~=orange-100] {
     fill: #ffe0b2;
 }
 
-md-icon[md-fill~=orange-c200] {
+md-icon[md-fill~=orange-200] {
     fill: #ffcc80;
 }
 
-md-icon[md-fill~=orange-c300] {
+md-icon[md-fill~=orange-300] {
     fill: #ffb74d;
 }
 
-md-icon[md-fill~=orange-c400] {
+md-icon[md-fill~=orange-400] {
     fill: #ffa726;
 }
 
 md-icon[md-fill~=orange],
-md-icon[md-fill~=orange-c500] {
+md-icon[md-fill~=orange-500] {
     fill: #ff9800;
 }
 
-md-icon[md-fill~=orange-c600] {
+md-icon[md-fill~=orange-600] {
     fill: #fb8c00;
 }
 
-md-icon[md-fill~=orange-c700] {
+md-icon[md-fill~=orange-700] {
     fill: #f57c00;
 }
 
-md-icon[md-fill~=orange-c800] {
+md-icon[md-fill~=orange-800] {
     fill: #ef6c00;
 }
 
-md-icon[md-fill~=orange-c900] {
+md-icon[md-fill~=orange-900] {
     fill: #e65100;
 }
 
@@ -2338,44 +2344,44 @@ md-icon[md-fill~=orange-a700] {
     fill: #ff6d00;
 }
 
-md-icon[md-fill~=deep-orange-c50] {
+md-icon[md-fill~=deep-orange-50] {
     fill: #fbe9e7;
 }
 
-md-icon[md-fill~=deep-orange-c100] {
+md-icon[md-fill~=deep-orange-100] {
     fill: #ffccbc;
 }
 
-md-icon[md-fill~=deep-orange-c200] {
+md-icon[md-fill~=deep-orange-200] {
     fill: #ffab91;
 }
 
-md-icon[md-fill~=deep-orange-c300] {
+md-icon[md-fill~=deep-orange-300] {
     fill: #ff8a65;
 }
 
-md-icon[md-fill~=deep-orange-c400] {
+md-icon[md-fill~=deep-orange-400] {
     fill: #ff7043;
 }
 
 md-icon[md-fill~=deep-orange],
-md-icon[md-fill~=deep-orange-c500] {
+md-icon[md-fill~=deep-orange-500] {
     fill: #ff5722;
 }
 
-md-icon[md-fill~=deep-orange-c600] {
+md-icon[md-fill~=deep-orange-600] {
     fill: #f4511e;
 }
 
-md-icon[md-fill~=deep-orange-c700] {
+md-icon[md-fill~=deep-orange-700] {
     fill: #e64a19;
 }
 
-md-icon[md-fill~=deep-orange-c800] {
+md-icon[md-fill~=deep-orange-800] {
     fill: #d84315;
 }
 
-md-icon[md-fill~=deep-orange-c900] {
+md-icon[md-fill~=deep-orange-900] {
     fill: #bf360c;
 }
 
@@ -2395,142 +2401,135 @@ md-icon[md-fill~=deep-orange-a700] {
     fill: #dd2c00;
 }
 
-md-icon[md-fill~=brown-c50] {
+md-icon[md-fill~=brown-50] {
     fill: #efebe9;
 }
 
-md-icon[md-fill~=brown-c100] {
+md-icon[md-fill~=brown-100] {
     fill: #d7ccc8;
 }
 
-md-icon[md-fill~=brown-c200] {
+md-icon[md-fill~=brown-200] {
     fill: #bcaaa4;
 }
 
-md-icon[md-fill~=brown-c300] {
+md-icon[md-fill~=brown-300] {
     fill: #a1887f;
 }
 
-md-icon[md-fill~=brown-c400] {
+md-icon[md-fill~=brown-400] {
     fill: #8d6e63;
 }
 
 md-icon[md-fill~=brown],
-md-icon[md-fill~=brown-c500] {
+md-icon[md-fill~=brown-500] {
     fill: #795548;
 }
 
-md-icon[md-fill~=brown-c600] {
+md-icon[md-fill~=brown-600] {
     fill: #6d4c41;
 }
 
-md-icon[md-fill~=brown-c700] {
+md-icon[md-fill~=brown-700] {
     fill: #5d4037;
 }
 
-md-icon[md-fill~=brown-c800] {
+md-icon[md-fill~=brown-800] {
     fill: #4e342e;
 }
 
-md-icon[md-fill~=brown-c900] {
+md-icon[md-fill~=brown-900] {
     fill: #3e2723;
 }
 
-md-icon[md-fill~=grey-c50] {
+md-icon[md-fill~=grey-50] {
     fill: #fafafa;
 }
 
-md-icon[md-fill~=grey-c100] {
+md-icon[md-fill~=grey-100] {
     fill: #f5f5f5;
 }
 
-md-icon[md-fill~=grey-c200] {
+md-icon[md-fill~=grey-200] {
     fill: #eeeeee;
 }
 
-md-icon[md-fill~=grey-c300] {
+md-icon[md-fill~=grey-300] {
     fill: #e0e0e0;
 }
 
-md-icon[md-fill~=grey-c400] {
+md-icon[md-fill~=grey-400] {
     fill: #bdbdbd;
 }
 
 md-icon[md-fill~=grey],
-md-icon[md-fill~=grey-c500] {
+md-icon[md-fill~=grey-500] {
     fill: #9e9e9e;
 }
 
-md-icon[md-fill~=grey-c600] {
+md-icon[md-fill~=grey-600] {
     fill: #757575;
 }
 
-md-icon[md-fill~=grey-c700] {
+md-icon[md-fill~=grey-700] {
     fill: #616161;
 }
 
-md-icon[md-fill~=grey-c800] {
+md-icon[md-fill~=grey-800] {
     fill: #424242;
 }
 
-md-icon[md-fill~=grey-c900] {
+md-icon[md-fill~=grey-900] {
     fill: #212121;
 }
 
-md-icon[md-fill~=blue-grey-c50] {
+md-icon[md-fill~=blue-grey-50] {
     fill: #eceff1;
 }
 
-md-icon[md-fill~=blue-grey-c100] {
+md-icon[md-fill~=blue-grey-100] {
     fill: #cfd8dc;
 }
 
-md-icon[md-fill~=blue-grey-c200] {
+md-icon[md-fill~=blue-grey-200] {
     fill: #b0bec5;
 }
 
-md-icon[md-fill~=blue-grey-c300] {
+md-icon[md-fill~=blue-grey-300] {
     fill: #90a4ae;
 }
 
-md-icon[md-fill~=blue-grey-c400] {
+md-icon[md-fill~=blue-grey-400] {
     fill: #78909c;
 }
 
 md-icon[md-fill~=blue-grey],
-md-icon[md-fill~=blue-grey-c500] {
+md-icon[md-fill~=blue-grey-500] {
     fill: #607d8b;
 }
 
-md-icon[md-fill~=blue-grey-c600] {
+md-icon[md-fill~=blue-grey-600] {
     fill: #546e7a;
 }
 
-md-icon[md-fill~=blue-grey-c700] {
+md-icon[md-fill~=blue-grey-700] {
     fill: #455a64;
 }
 
-md-icon[md-fill~=blue-grey-c800] {
+md-icon[md-fill~=blue-grey-800] {
     fill: #37474f;
 }
 
-md-icon[md-fill~=blue-grey-c900] {
+md-icon[md-fill~=blue-grey-900] {
     fill: #263238;
 }
 
-md-icon[md-fill~=black],
-md-icon[md-fill~=black-c1] {
+md-icon[md-fill~=black] {
     fill: #000000;
 }
 
-md-icon[md-fill~=white],
-md-icon[md-fill~=white-c1] {
+md-icon[md-fill~=white] {
     fill: #ffffff;
-}
-
-md-icon[md-fill~=transparent],
-md-icon[md-fill~=transparent-c1] {
-    fill: transparent;
 }
 
 md-icon> svg {
@@ -2591,16 +2590,6 @@ md-list[md-type~=one-line]> md-tile> md-avatar:first-of-type {
     margin: 8px 16px 8px 0px;
 }
 
-md-list> md-tile> md-icon:first-of-type,
-md-list[md-type~=one-line]> md-tile> md-icon:first-of-type {
-    margin: 12px 12px 12px 0px;
-}
-
-md-list> md-tile> * + md-icon:last-of-type,
-md-list[md-type~=one-line]> md-tile> * + md-icon:last-of-type {
-    margin: 12px 0px 12px 12px;
-}
-
 md-list[md-type~=two-lines]> md-tile {
     height: 72px;
 }
@@ -2643,8 +2632,8 @@ md-list> md-tile {
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
     position: relative;
     overflow: hidden;
 }
@@ -2656,6 +2645,17 @@ md-menu {
     -o-transition: height 0.25s;
     transition: height 0.25s;
     overflow: hidden;
+}
+md-page {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transition: left 0.5s ease-in-out, right 0.5s ease-in-out;
+    -moz-transition: left 0.5s ease-in-out, right 0.5s ease-in-out;
+    -o-transition: left 0.5s ease-in-out, right 0.5s ease-in-out;
+    transition: left 0.5s ease-in-out, right 0.5s ease-in-out;
 }
 md-panel {
     display: block;
@@ -2700,6 +2700,12 @@ md-sidemenu {
 
 md-sidemenu>md-list {
     width: 100%;
+}
+
+md-sidemenu md-list md-tile md-text {
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px),
@@ -2853,6 +2859,11 @@ md-tabbar > md-tab {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.6);
     font-weight: 500;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 @media only screen and (max-width: 320px),

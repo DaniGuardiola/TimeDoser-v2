@@ -2,20 +2,33 @@
 <html>
 <head>
   <title>Timedoser</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="materializer/materializer.css">
+  <link rel="stylesheet" href="styles.css">
   <meta charset="utf-8">
 </head>
 
-<body md-color="purple-100">
+<body md-color="grey-200">
 
-  <md-toolbar md-height="x1" md-color="purple" md-shadow="shadow-1">
+  <md-toolbar md-height="x2" md-color="cyan" md-shadow="shadow-1">
+
     <md-row>
     	<md-icon-button md-action="custom: openSidemenu"><md-icon md-image="menu" md-fill="white"></md-icon></md-icon-button>
       <md-text md-typo="title">Now</md-text>
       <md-space></md-space>
       <md-icon-button md-action="custom: closeSidemenu"><md-icon md-image="play_circle_outline" md-fill="white"></md-icon></md-icon-button>
+      <md-icon-button md-action="custom: closeSidemenu"><md-icon md-image="done_all" md-fill="white"></md-icon></md-icon-button>
     </md-row>
+
+    <md-row>
+    <md-space></md-space>
+    <md-tabbar md-type="fixed">
+       <md-tab md-typo="button" md-action="showpage" md-page="inbox">inbox</md-tab>
+       <md-tab md-typo="button" md-action="showpage" md-page="upcoming">upcoming</md-tab>
+       <md-tab md-typo="button" md-action="showpage" md-page="today">today</md-tab>
+    </md-tabbar>
+    <md-space></md-space>
+  </md-row>
+
   </md-toolbar>
 
   <md-sidemenu md-color="white" md-shadow="shadow-1">
@@ -40,48 +53,64 @@
   </md-sidemenu>
 
   <md-content>
-    <md-paper>
+  <md-page id="inbox">
+
+    <md-paper md-shadow="shadow-1">
       <md-list>
 
         <md-tile>
           <md-icon md-image="forward"></md-icon>
           <md-text>Close the bed</md-text>
-          <md-icon md-image="done"></md-icon>
+          <md-icon-button class="hidden action" md-action="custom: closeSidemenu">
+            <md-icon md-image="done" md-fill="green"></md-icon>
+          </md-icon-button>
         </md-tile>
 
         <md-tile>
           <md-icon md-image="forward"></md-icon>
           <md-text>Take breakfast</md-text>
-          <md-icon md-image="done"></md-icon>
+          <md-icon-button class="hidden action" md-action="custom: closeSidemenu">
+            <md-icon md-image="done" md-fill="green"></md-icon>
+          </md-icon-button>
         </md-tile>
 
         <md-tile>
-          <md-text md-font-color="grey">Upcoming</md-text>
-        </md-tile>
-
-        <md-tile>
-          <md-icon md-image="access_time"></md-icon>
-          <md-text>Take a shower<span md-font-color="grey"> - 10m</span></md-text>
-        </md-tile>
-
-        <md-tile>
-          <md-icon md-image="forward"></md-icon>
-          <md-text>Tidy up bathroom</md-text>
-        </md-tile>
-
-        <md-tile>
-          <md-icon md-image="directions_bus"></md-icon>
-          <md-text>Travel in bus<span md-font-color="grey"> - 8:15 45m</span></md-text>
-        </md-tile>
-
-        <md-tile>
-          <md-icon md-image="work"></md-icon>
-          <md-text>Work at Data Trends<span md-font-color="grey"> - 9:00 2h</span></md-text>
+          <md-icon md-fill="grey" md-image="navigate_next"></md-icon>
+          <md-text md-font-color="grey">New tasks in <span md-font-color="green">2h 25m</span></md-text>
         </md-tile>
 
       </md-list>
 
     </md-paper>
+
+    </md-page>
+
+    <md-page id="upcoming">
+      <md-paper md-shadow="shadow-1">
+        <md-list>
+          <md-tile>
+            <md-icon md-image="access_time"></md-icon>
+            <md-text>Take a shower<span md-font-color="grey"> - 10m</span></md-text>
+          </md-tile>
+
+          <md-tile>
+            <md-icon md-image="forward"></md-icon>
+            <md-text>Tidy up bathroom</md-text>
+          </md-tile>
+
+          <md-tile>
+            <md-icon md-image="directions_bus"></md-icon>
+            <md-text>Travel in bus<span md-font-color="grey"> - 8:15 45m</span></md-text>
+          </md-tile>
+
+          <md-tile>
+            <md-icon md-image="work"></md-icon>
+            <md-text>Work at Data Trends<span md-font-color="grey"> - 9:00 2h</span></md-text>
+          </md-tile>
+        </md-list>
+      </md-paper>
+    </md-page>
+    <md-page id="today"></md-page>
   </md-content>
 
   <script src="js/main.js"></script>
