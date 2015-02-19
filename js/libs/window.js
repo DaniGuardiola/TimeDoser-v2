@@ -31,8 +31,37 @@ libs.window = {
         return true;
     },
     sendToLeft: function() {
-        libs.window.data.this.moveTo(0, libs.window.data.this.getBounds().top);
-        console.log("[window]: [sendToLeft] Sending window to left");
+
+        dibd = window.screen;
+ 
+        //Snap to edge: shift left if distance to left < 100px, etc.
+        dL = window.screenX - dibd.availLeft;
+        dT = window.screenY - dibd.availTop;
+
+        //This works on my setup with monitors using multiple DPIs, but it may not work everywhere. 
+        availHeight = (dibd.availHeight + dibd.height) / 2;
+        //availHeight = dibd.availHeight;
+        
+        dR = (dibd.availLeft + dibd.availWidth) - (window.screenX + window.outerWidth);
+        dB = (dibd.availTop + availHeight) - (window.screenY + window.outerHeight);
+        targetL = window.screenX;
+        targetT = window.screenY;
+
+
+        CLOSE = 50; 
+        if (dL < CLOSE)
+            targetL = targetL - dL; 
+        if (dR < CLOSE)
+            targetL = targetL + dR;
+        if (dT < CLOSE)
+            targetT = targetT - dT;
+        if (dB < CLOSE)
+            targetT = targetT + dB;
+
+
+        console.log("[window]: [sendToLeft] Moving " + window.outerWidth + "x" + window.outerHeight + " window from X=" + window.screenX + " T=" + window.screenY + 
+                    " to L=" + targetL + " T=" + targetT + "; dL=" + dL + " dR=" + dR + " dT=" + dT + " dB=" + dB);
+        libs.window.data.this.outerBounds.setPosition(Math.round(targetL), Math.round(targetT))
         return true;
     },
     idleCollapse: {
