@@ -1,0 +1,61 @@
+.ripple {
+  position: absolute;
+  background: rgba(0,0,0,.25);
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.ripple.show {
+  -webkit-animation: ripple .5s ease-out;
+  animation: ripple .5s ease-out;
+}
+@-webkit-keyframes
+  ripple { to {
+   -webkit-transform: scale(1.5);
+   transform: scale(1.5);
+   opacity: 0;
+  }
+}
+@keyframes
+  ripple { to {
+   -webkit-transform: scale(1.5);
+   transform: scale(1.5);
+   opacity: 0;
+  }
+}
+.ripple.fast {
+  -webkit-animation: ripplefast 1s ease-out;
+  animation: ripplefast 1s ease-out;
+}
+@-webkit-keyframes
+  ripplefast {
+    25% {
+     -webkit-transform: scale(2);
+     transform: scale(2);
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+     -webkit-transform: scale(2);
+     transform: scale(2);
+     opacity: 0;
+    }
+  }
+}
+@keyframes
+  ripplefast {
+    25% {
+     -webkit-transform: scale(2);
+     transform: scale(2);
+    }
+    100% {
+     -webkit-transform: scale(2);
+     transform: scale(2);
+      opacity: 0;
+    }
+  }
+}

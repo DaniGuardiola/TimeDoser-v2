@@ -1,16 +1,30 @@
+/* COMMENTED = MOBILE
 md-tile > md-icon-button.hidden {
-	display: none;	
+	display: none;
 }
 
 md-tile:hover > md-icon-button.hidden {
-	display: block;	
+	display: block;
 }
+*/
 
 /* Materializer?? */
 md-tile:hover > md-icon-button > md-icon > svg {
-	transition: fill 0;	
+	transition: fill 0;
 }
 
 md-icon-button:active {
 	background-color: rgba(0, 0, 0, 0.12);
+}
+
+input {
+	border-color: #4caf50;
+}
+
+md-switch[value=on]:before {
+	background-color: rgba(76, 175, 80, 0.5);
+}
+
+md-switch[value=on]:after {
+	background-color: #4caf50;
 }

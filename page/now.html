@@ -1,0 +1,60 @@
+<md-pager  id="contentPager">
+  <md-page md-tab="inbox">
+
+    <md-paper md-shadow="shadow-1">
+      <md-list>
+
+        <md-tile>
+          <md-icon md-image="icon:assignment_turned_in"></md-icon>
+          <md-text>Close the bed</md-text>
+          <md-icon-button class="hidden action" md-action="custom: closeSidemenu">
+            <md-icon md-image="icon:done" md-fill="green"></md-icon>
+          </md-icon-button>
+        </md-tile>
+
+        <md-tile md-action="custom: transition.morph">
+          <md-icon md-image="icon:assignment_turned_in"></md-icon>
+          <md-text>Take breakfast</md-text>
+          <md-icon-button class="hidden action" md-action="custom: closeSidemenu">
+            <md-icon md-image="icon:done" md-fill="green"></md-icon>
+          </md-icon-button>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-fill="grey" md-image="icon:navigate_next"></md-icon>
+          <md-text md-font-color="grey">New tasks in <span md-font-color="green">2h 25m</span></md-text>
+        </md-tile>
+
+      </md-list>
+
+    </md-paper>
+
+  </md-page>
+
+  <md-page md-tab="upcoming">
+    <md-paper md-shadow="shadow-1">
+      <md-list>
+        <md-tile>
+          <md-icon md-image="icon:access_time"></md-icon>
+          <md-text>Take a shower<span md-font-color="grey"> - 10m</span></md-text>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="icon:assignment_turned_in"></md-icon>
+          <md-text>Tidy up bathroom</md-text>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="icon:directions_bus"></md-icon>
+          <md-text>Travel in bus<span md-font-color="grey"> - 8:15 45m</span></md-text>
+        </md-tile>
+
+        <md-tile>
+          <md-icon md-image="icon:work"></md-icon>
+          <md-text>Work at Data Trends<span md-font-color="grey"> - 9:00 2h</span></md-text>
+        </md-tile>
+      </md-list>
+    </md-paper>
+  </md-page>
+  <md-page md-tab="today"></md-page>
+</md-pager>

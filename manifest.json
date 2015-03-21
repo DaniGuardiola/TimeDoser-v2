@@ -4,7 +4,7 @@
   "short_name": "Timedoser",
   "description": "Description for Timedoser",
 
-  "version": "0.0.1",
+  "version": "0.0.4",
 
   "icons": {
     "16": "assets/icon_16.png",
@@ -17,6 +17,7 @@
     }
   },
   "permissions": [
-    "notifications"
+    "notifications",
+    "storage"
   ]
 }

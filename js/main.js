@@ -1,7 +1,14 @@
 // Window ONLOAD
 window.addEventListener('load', function(){
-	materializer = new Materializer();
-	materializer.init();
+	md = new Materializer();
+	md.init();
+	state.now.index();
+	md.ajaxInsert('page/now.html',getEl('md-content'),function(){
+		console.log('Loading Now page on app start');
+	});
+
+
+//	chrome.app.window.current().fullscreen();
 });
 
 function openSidemenu(){
@@ -21,6 +28,10 @@ function loadPage(page){
 		closeSidemenu();
 	}
 	console.log("This has to load " + page);
+}
+
+function closeApp(){
+	chrome.app.window.current().close();
 }
 
 function menuHandler(el){

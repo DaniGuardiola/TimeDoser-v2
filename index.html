@@ -4,27 +4,28 @@
   <title>Timedoser</title>
   <link rel="stylesheet" href="materializer/materializer.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ripple.css">
   <meta charset="utf-8">
 </head>
 
-<body md-color="grey-200">
+<body md-layout="fixed" md-color="grey-200">
 
-  <md-toolbar md-height="x2" md-color="cyan" md-shadow="shadow-1">
+  <md-toolbar md-drag="drag" md-color="purple" md-shadow="shadow-1">
 
     <md-row>
-    	<md-icon-button md-action="custom: openSidemenu"><md-icon md-image="menu" md-fill="white"></md-icon></md-icon-button>
-      <md-text md-typo="title">Now</md-text>
+    	<md-icon-button md-action="custom: md.sidemenu.open" md-image="icon:menu" md-fill="white"></md-icon-button>
+      <md-text md-typo="title">Now<span md-font-color="purple-200"> - Inbox</span></md-text>
       <md-space></md-space>
-      <md-icon-button md-action="custom: closeSidemenu"><md-icon md-image="play_circle_outline" md-fill="white"></md-icon></md-icon-button>
-      <md-icon-button md-action="custom: closeSidemenu"><md-icon md-image="done_all" md-fill="white"></md-icon></md-icon-button>
+      <md-icon-button md-image="icon:play_circle_outline" md-fill="white"></md-icon-button>
+      <md-icon-button md-action="chrome-app-close" md-image="icon:close" md-fill="white"></md-icon-button>
     </md-row>
 
     <md-row>
     <md-space></md-space>
-    <md-tabbar md-type="fixed">
-       <md-tab md-typo="button" md-action="showpage" md-page="inbox">inbox</md-tab>
-       <md-tab md-typo="button" md-action="showpage" md-page="upcoming">upcoming</md-tab>
-       <md-tab md-typo="button" md-action="showpage" md-page="today">today</md-tab>
+    <md-tabbar md-pager="contentPager" md-rel="main" md-type="fixed">
+       <md-tab md-typo="button" md-action="custom: state.now.inbox">inbox</md-tab>
+       <md-tab md-typo="button" md-action="custom: state.now.upcoming">upcoming</md-tab>
+       <md-tab md-typo="button" md-action="custom: state.now.today">today</md-tab>
     </md-tabbar>
     <md-space></md-space>
   </md-row>
@@ -32,88 +33,38 @@
   </md-toolbar>
 
   <md-sidemenu md-color="white" md-shadow="shadow-1">
-    <md-list md-action="custom: menuHandler">
+    <md-list md-action="ajax: md-content">
 
-      <md-tile data-page="now">
-        <md-icon md-image="play_circle_outline"></md-icon>
-        <md-text>Now</md-text>
+      <md-tile class="rippleon" md-ajax="page/now.html" md-ajax-callback="state.now.index">
+        <md-icon md-fill="cyan" md-image="icon:play_circle_outline"></md-icon>
+        <md-text md-font-color="cyan">Now</md-text>
       </md-tile>
 
-      <md-tile data-page="plan">
-        <md-icon md-image="fast_forward"></md-icon>
+      <md-tile class="rippleon" md-ajax="page/plan.html" md-ajax-callback="state.plan.index">
+        <md-icon md-image="icon:fast_forward"></md-icon>
         <md-text>Plan</md-text>
       </md-tile>
 
-      <md-tile data-page="history">
-        <md-icon md-image="history"></md-icon>
+      <md-tile class="rippleon" md-ajax="page/history.html" md-ajax-callback="state.history.index">
+        <md-icon md-image="icon:history"></md-icon>
         <md-text>History</md-text>
       </md-tile>
     </md-list>
 
   </md-sidemenu>
 
+  <md-fab md-action="morph" md-color="green" md-shadow="shadow-1">
+    <md-icon md-image="icon:done_all" md-fill="white"></md-icon>
+  </md-fab>
+
+
   <md-content>
-  <md-page id="inbox">
 
-    <md-paper md-shadow="shadow-1">
-      <md-list>
-
-        <md-tile>
-          <md-icon md-image="forward"></md-icon>
-          <md-text>Close the bed</md-text>
-          <md-icon-button class="hidden action" md-action="custom: closeSidemenu">
-            <md-icon md-image="done" md-fill="green"></md-icon>
-          </md-icon-button>
-        </md-tile>
-
-        <md-tile>
-          <md-icon md-image="forward"></md-icon>
-          <md-text>Take breakfast</md-text>
-          <md-icon-button class="hidden action" md-action="custom: closeSidemenu">
-            <md-icon md-image="done" md-fill="green"></md-icon>
-          </md-icon-button>
-        </md-tile>
-
-        <md-tile>
-          <md-icon md-fill="grey" md-image="navigate_next"></md-icon>
-          <md-text md-font-color="grey">New tasks in <span md-font-color="green">2h 25m</span></md-text>
-        </md-tile>
-
-      </md-list>
-
-    </md-paper>
-
-    </md-page>
-
-    <md-page id="upcoming">
-      <md-paper md-shadow="shadow-1">
-        <md-list>
-          <md-tile>
-            <md-icon md-image="access_time"></md-icon>
-            <md-text>Take a shower<span md-font-color="grey"> - 10m</span></md-text>
-          </md-tile>
-
-          <md-tile>
-            <md-icon md-image="forward"></md-icon>
-            <md-text>Tidy up bathroom</md-text>
-          </md-tile>
-
-          <md-tile>
-            <md-icon md-image="directions_bus"></md-icon>
-            <md-text>Travel in bus<span md-font-color="grey"> - 8:15 45m</span></md-text>
-          </md-tile>
-
-          <md-tile>
-            <md-icon md-image="work"></md-icon>
-            <md-text>Work at Data Trends<span md-font-color="grey"> - 9:00 2h</span></md-text>
-          </md-tile>
-        </md-list>
-      </md-paper>
-    </md-page>
-    <md-page id="today"></md-page>
   </md-content>
 
   <script src="js/main.js"></script>
   <script src="materializer/materializer.js"></script>
+  <script src="js/state.js"></script>
+  <script src="ripple.js"></script>
 </body>
 </html>

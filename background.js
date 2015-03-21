@@ -12,12 +12,20 @@ chrome.app.runtime.onLaunched.addListener(function() {
   chrome.app.window.create(
     'index.html',
     {
+      id: "app",
       frame: {
+        type: "none"/*,
       	color: "#0097a7",
       	activeColor: "#0097a7",
-      	inactiveColor: "#00acc1"
+      	inactiveColor: "#00acc1"*/
       },
-      innerBounds: {width: 320, height: 533}
+      innerBounds: {
+        width: 320,
+        height: 533,
+        minWidth: 300,
+        minHeight: 104
+      },
+      resizable: false
     }
   );
 });
