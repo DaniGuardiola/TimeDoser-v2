@@ -1,0 +1,255 @@
+<style is="custom-style">
+html,
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+/* Classes */
+
+.space {
+    height: 0;
+    flex: 1;
+}
+
+.subhead {
+    @apply(--paper-font-subhead);
+}
+/* Dragging */
+
+#timer-container {
+    -webkit-app-region: drag;
+}
+
+#timer-container>* {
+    -webkit-app-region: no-drag;
+}
+
+* {
+    box-sizing: border-box;
+}
+/* Elements */
+
+#timedoser-settings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 0;
+    opacity: 1;
+    background: var(--paper-blue-500);
+    color: #fff;
+    transition: height 0s, width 0s;
+}
+
+#timedoser-settings:not(.on) {
+    opacity: 0;
+    height: 0;
+    padding: 0 8px;
+    transition: opacity 0.25s, height 0s 0.25s, width 0s 0.25s, padding 0s 0.25s;
+}
+
+#timedoser-settings * {
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+#timedoser-settings:not(.on) * {
+    opacity: 0;
+}
+
+#timedoser-settings .time {
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+#timedoser-settings paper-slider {
+    width: 100%;
+    --paper-slider-knob-color: var(--paper-purple-500);
+    --paper-slider-active-color: var(--paper-purple-500);
+}
+
+#timedoser-settings .title .subhead {
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+#timer-container {
+    width: 224px;
+    height: 112px;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    transition: top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1);
+    @apply(--shadow-elevation-3dp);
+}
+
+#main-fab {
+    --paper-fab-background: var(--paper-blue-500);
+    --paper-fab-keyboard-focus-background: var(--paper-blue-700);
+    opacity: 1;
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    transition: left 0.5s cubic-bezier(.55, 0, .1, 1), opacity 0.5s;
+}
+
+#main-fab:not(.on) {
+    opacity: 0;
+}
+
+#main-fab[position="right"] {
+    left: 140px;
+}
+
+#animation-helper {
+    border-radius: 50%;
+    position: absolute;
+    transition-property: width, height, top, left;
+    transition-duration: 0.5s;
+    -webkit-app-region: drag;
+}
+
+#animation-helper:not(.on) {
+    display: none;
+}
+
+#animation-helper.cover {
+    z-index: 9999;
+}
+
+#close-button {
+    color: white;
+    opacity: 1;
+    transition: opacity 0.25s 0.5s;
+}
+
+#timer-text {
+    position: absolute;
+    opacity: 1;
+    color: #fff;
+    top: 36.5px;
+    right: 28px;
+    transition: opacity 0.25s 0.5s;
+    -webkit-app-region: drag;
+    @apply(--paper-font-display1);
+    /* Temporal until I get ^ that working */
+    
+    font-family: 'Roboto', 'Noto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 40px;
+}
+
+#timer-text:not(.on),
+#close-button:not(.on) {
+    opacity: 0;
+    transition: opacity 0.25s 0.25s;
+    pointer-events: none;
+}
+/* Tour */
+
+body.tour #timer-container {
+    top: 64px;
+    left: 64px;
+    cursor: none;
+}
+
+body.tour #timer-container>* {
+    pointer-events: none;
+}
+
+#tour-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+/* Themes */
+/* Stand by */
+
+body[status="standby"] #timer-container {
+    background-color: var(--paper-purple-500);
+}
+/* Work */
+
+body[status="work"] #timer-container {
+    background-color: var(--paper-indigo-500);
+}
+/* Break */
+
+body[status="break"] #timer-container {
+    background-color: var(--paper-green-500);
+}
+/* Exit */
+
+body.exit #timer-container {
+    background-color: #fff;
+}
+
+body.exit #timer-container>* {
+    display: none;
+}
+
+body.exit {
+    opacity: 0;
+}
+/* Sexy scrollbars please */
+
+::-webkit-scrollbar {
+    background: #F5F5F5;
+    overflow: visible;
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    border-width: 2px 4px;
+    min-width: 40px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    border-width: 4px 2px;
+    min-height: 40px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #9E9E9E;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.10), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #757575;
+}
+</style>

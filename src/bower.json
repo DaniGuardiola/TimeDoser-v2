@@ -1,0 +1,19 @@
+{
+    "name": "src",
+    "version": "0.0.0",
+    "authors": [
+        "Dani Guardiola <contact@daniguardiola.me>"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "paper-elements": "PolymerElements/paper-elements#~1.0.1",
+        "iron-elements": "PolymerElements/iron-elements#~1.0.1"
+    }
+}

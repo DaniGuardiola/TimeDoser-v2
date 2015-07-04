@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Now - TimeDoser</title>
+    <!-- Web components -->
+    <script>
+    // Shadow DOM please
+    window.Polymer = window.Polymer || {};
+    window.Polymer.dom = "shadow";
+    </script>
+    <link rel="import" href="/bower_components/iron-icons/av-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/maps-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+    <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
+    <link rel="import" href="/bower_components/paper-slider/paper-slider.html">
+    <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+    <!-- Script 
+    <script src="/js/script.js"></script>
+
+    <!-- Debug -->
+    <script src="/js/app.js"></script>
+    <script src="/js/module/commands.js"></script>
+    <script src="/js/module/dom.js"></script>
+    <script src="/js/module/settings.js"></script>
+    <script src="/js/module/tools.js"></script>
+    <script src="/js/module/timer.js"></script>
+    <script src="/js/module/window.js"></script>
+    <script src="/js/module/tour.js"></script>
+    <!-- End debug -->
+    <link rel="import" href="/css/style.html">
+    <!-- Components styles -->
+</head>
+
+<body unresolved>
+    <template is="dom-bind">
+        <div id="timedoser-settings" class="vertical-section">
+            <div class="title center horizontal layout">
+                <iron-icon icon="work"></iron-icon>
+                <div class="subhead">Work time</div>
+            </div>
+            <div class="slider-setting center horizontal layout">
+                <span class="time subhead">{{workTime}}</span>
+                <paper-slider class="indigo" value="{{workTime}}" min="15" max="60" step="5"></paper-slider>
+            </div>
+            <div class="title center horizontal layout">
+                <iron-icon icon="maps:local-cafe"></iron-icon>
+                <div class="subhead">Short break time</div>
+            </div>
+            <div class="slider-setting center horizontal layout">
+                <span class="time subhead">{{shortBreakTime}}</span>
+                <paper-slider class="green" value="{{shortBreakTime}}" min="5" max="15" step="5"></paper-slider>
+            </div>
+            <div class="title center horizontal layout">
+                <iron-icon icon="event-seat"></iron-icon>
+                <div class="subhead">Long break time</div>
+            </div>
+            <div class="slider-setting center horizontal layout">
+                <span class="time subhead">{{longBreakTime}}</span>
+                <paper-slider class="light-green" value="{{longBreakTime}}" min="15" max="30" step="5"></paper-slider>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
