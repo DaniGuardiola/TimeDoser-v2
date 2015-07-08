@@ -178,7 +178,7 @@ API.timer = (function() {
         data.changingStatus = true;
         data.status = "break";
         statusChangeAnimation({
-            color: "#4caf50",
+            color: "#009688",
             time: true,
             close: true,
             fab: {
