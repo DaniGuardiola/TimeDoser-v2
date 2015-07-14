@@ -22,7 +22,9 @@ API.timer = (function() {
         opt.cover = opt.cover || false;
         opt.time = opt.time !== null ? opt.time : false;
         opt.close = opt.close !== null ? opt.close : true;
+        opt.settings = opt.settings !== null ? opt.settings : true;
         opt.fab = opt.fab || {};
+        opt.fab.fadein = opt.fab.fadein || false;
         opt.fab.position = opt.fab.position || "left";
         opt.fab.icon = opt.fab.icon || "av:play-arrow";
         opt.fab.hide = opt.fab.hide || false;
@@ -38,6 +40,7 @@ API.timer = (function() {
         var helper = API.dom.getAnimationHelper();
         var time = API.dom.getTime();
         var close = API.dom.getClose();
+        var settings = API.dom.getSettingsButton();
 
         // Set target
         target = target || fab;
@@ -73,12 +76,18 @@ API.timer = (function() {
             helper.classList.remove("cover");
         }
 
+        // Prepare fab fadein
+        if (opt.fab.fadein) {
+            fab.style.transition = "none";
+        }
+
         // Activate helper
         helper.classList.add("on");
 
         // Hide time and close button
         time.classList.remove("on");
         close.classList.remove("on");
+        settings.classList.remove("on");
 
         // Set FAB icon
         fab.setAttribute("icon", opt.fab.icon);
@@ -102,9 +111,20 @@ API.timer = (function() {
         var fab = API.dom.getFAB();
         var time = API.dom.getTime();
         var close = API.dom.getClose();
+        var settings = API.dom.getSettingsButton();
 
         // Get opt from tmp
         var opt = tmp.opt;
+
+        // Set fab fadein
+        if (opt.fab.fadein) {
+            console.log("IM HAPPENING");
+            fab.classList.remove("on");
+            setTimeout(function() {
+                fab.style.transition = "";
+                fab.classList.add("on");
+            }, 200);
+        }
 
         // Remove this event listener
         helper.removeEventListener("transitionend", animationHelperTransitionend);
@@ -130,6 +150,13 @@ API.timer = (function() {
             close.classList.add("on");
         }
 
+        // Show settings button
+        console.log("SETTINGS: " + opt.settings);
+        if (opt.settings) {
+            console.log(settings);
+            settings.classList.add("on");
+        }
+
         // Remove opt from tmp
         delete tmp.opt;
 
@@ -146,6 +173,7 @@ API.timer = (function() {
             color: "#9c27b0",
             time: false,
             close: true,
+            settings: true,
             fab: {
                 position: "right",
                 icon: "av:play-arrow"
@@ -161,6 +189,7 @@ API.timer = (function() {
             color: "#3f51b5",
             time: true,
             close: false,
+            settings: false,
             fab: {
                 position: "left",
                 icon: "av:stop"
@@ -181,6 +210,7 @@ API.timer = (function() {
             color: "#009688",
             time: true,
             close: true,
+            settings: false,
             fab: {
                 position: "left",
                 icon: "av:skip-next"

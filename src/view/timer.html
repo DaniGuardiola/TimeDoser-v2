@@ -23,7 +23,7 @@
     <script src="/js/app.js"></script>
     <script src="/js/module/commands.js"></script>
     <script src="/js/module/dom.js"></script>
-    <script src="/js/module/settings.js"></script>
+    <script src="/js/module/storage.js"></script>
     <script src="/js/module/tools.js"></script>
     <script src="/js/module/timer.js"></script>
     <script src="/js/module/window.js"></script>
@@ -36,29 +36,37 @@
 <body unresolved>
     <template is="dom-bind">
         <div id="timedoser-settings" class="vertical-section">
-            <div class="title center horizontal layout">
-                <iron-icon icon="work"></iron-icon>
-                <div class="subhead">Work time</div>
+            <div class="header title center horizontal layout">
+                <div class="text-title">Settings</div>
+                <div class="space"></div>
+                <paper-icon-button class="discard-button" icon="close"></paper-icon-button>
+                <paper-icon-button class="save-button" icon="done"></paper-icon-button>
             </div>
-            <div class="slider-setting center horizontal layout">
-                <span class="time subhead">{{workTime}}</span>
-                <paper-slider class="indigo" value="{{workTime}}" min="15" max="60" step="5"></paper-slider>
-            </div>
-            <div class="title center horizontal layout">
-                <iron-icon icon="maps:local-cafe"></iron-icon>
-                <div class="subhead">Short break time</div>
-            </div>
-            <div class="slider-setting center horizontal layout">
-                <span class="time subhead">{{shortBreakTime}}</span>
-                <paper-slider class="green" value="{{shortBreakTime}}" min="5" max="15" step="5"></paper-slider>
-            </div>
-            <div class="title center horizontal layout">
-                <iron-icon icon="event-seat"></iron-icon>
-                <div class="subhead">Long break time</div>
-            </div>
-            <div class="slider-setting center horizontal layout">
-                <span class="time subhead">{{longBreakTime}}</span>
-                <paper-slider class="light-green" value="{{longBreakTime}}" min="15" max="30" step="5"></paper-slider>
+            <div class="settings-wrapper">
+                <div class="title center horizontal layout">
+                    <iron-icon icon="work"></iron-icon>
+                    <div class="subhead">Work time</div>
+                </div>
+                <div class="slider-setting center horizontal layout">
+                    <span class="time subhead">{{workTime}}</span>
+                    <paper-slider class="indigo" value="{{workTime}}" min="15" max="60" step="5"></paper-slider>
+                </div>
+                <div class="title center horizontal layout">
+                    <iron-icon icon="maps:local-cafe"></iron-icon>
+                    <div class="subhead">Short break time</div>
+                </div>
+                <div class="slider-setting center horizontal layout">
+                    <span class="time subhead">{{shortBreakTime}}</span>
+                    <paper-slider class="green" value="{{shortBreakTime}}" min="5" max="15" step="5"></paper-slider>
+                </div>
+                <div class="title center horizontal layout">
+                    <iron-icon icon="event-seat"></iron-icon>
+                    <div class="subhead">Long break time</div>
+                </div>
+                <div class="slider-setting center horizontal layout">
+                    <span class="time subhead">{{longBreakTime}}</span>
+                    <paper-slider class="light-green" value="{{longBreakTime}}" min="15" max="30" step="5"></paper-slider>
+                </div>
             </div>
         </div>
     </template>

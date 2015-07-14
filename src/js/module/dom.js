@@ -27,6 +27,12 @@ API.dom = (function() {
         time.id = "timer-text";
         time.textContent = "00:00";
 
+        // Create settings button
+        var settings = document.createElement("paper-icon-button");
+        settings.id = "settings-button";
+        settings.setAttribute("icon", "settings");
+        settings.addEventListener("click", openSettings);
+
         // Create animation helper
         var animationHelper = document.createElement("div");
         animationHelper.id = "animation-helper";
@@ -34,6 +40,7 @@ API.dom = (function() {
 
         // Append elements to container
         container.appendChild(close);
+        container.appendChild(settings);
         container.appendChild(time);
         container.appendChild(animationHelper);
         container.appendChild(fab);
@@ -41,8 +48,8 @@ API.dom = (function() {
         // Append container to body
         document.body.appendChild(container);
 
-        // Set up the settings
-        setupSettings();
+        // Initialize the settings
+        initSettings();
 
         // Execute load animation
         loadAnimation(callback);
@@ -54,11 +61,16 @@ API.dom = (function() {
     }
 
     // Sets up the settings section
-    function setupSettings() {
+    function initSettings() {
         var settings = getSettings();
         getTimerContainer().appendChild(settings);
         var sliderDivs = settings.querySelectorAll(".slider-setting");
         var time, slider;
+        var discard = settings.querySelector(".discard-button");
+        var save = settings.querySelector(".save-button");
+
+        discard.addEventListener("click", closeSettings);
+        save.addEventListener("click", closeSettings);
 
         function updateTime(event) {
             var slider = event.currentTarget;
@@ -98,10 +110,25 @@ API.dom = (function() {
 
     // Closes the settings section
     function closeSettings() {
-        getTimerContainer().style.height = "";
-        API.window.resize("standard");
-        getSettings().classList.remove("on");
-        API.timer.setStatus("standby");
+        var target = event && event.currentTarget ? event.currentTarget : false;
+        API.timer.changeStatus({
+            color: "#9c27b0",
+            expand: 550,
+            time: false,
+            close: true,
+            cover: true,
+            settings: true,
+            fab: {
+                fadein: true,
+                position: "right",
+                icon: "av:play-arrow"
+            },
+            callback: function() {
+                API.window.resize("standard");
+                getSettings().classList.remove("on");
+                getTimerContainer().style.height = "";
+            }
+        }, target);
     }
 
     // Load animation
@@ -157,6 +184,11 @@ API.dom = (function() {
         return document.getElementById("close-button");
     }
 
+    // Gets the settings button
+    function getSettingsButton() {
+        return document.getElementById("settings-button");
+    }
+
     // Updates the time text and the window title
     function updateTime(minute, second) {
         // Import i18n msg tool
@@ -192,6 +224,7 @@ API.dom = (function() {
         getAnimationHelper: getAnimationHelper,
         getTime: getTime,
         getClose: getClose,
+        getSettingsButton: getSettingsButton,
         updateTime: updateTime
     };
 })();
