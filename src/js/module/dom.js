@@ -6,11 +6,44 @@ API.dom = (function() {
         var close = document.createElement("paper-icon-button");
         close.id = "close-button";
         close.setAttribute("icon", "close");
+        close.setAttribute("title", "Close TimeDoser");
         close.addEventListener("click", function(event) {
             API.timer.stop(function() {
                 exitAnimation(event);
             });
         });
+
+        var pinClickListener = function(event) {
+            if (API.window.togglePin()) {
+                event.currentTarget.setAttribute("icon", "visibility-off");
+            } else {
+                event.currentTarget.setAttribute("icon", "visibility");
+            }
+        };
+
+        // Create pin button
+        var pin = document.createElement("paper-icon-button");
+        pin.id = "pin-button";
+        pin.setAttribute("icon", "visibility");
+        pin.setAttribute("title", "Show in top of other windows");
+        pin.addEventListener("click", pinClickListener);
+
+        var miniClickListener = function(event) {
+            if (API.window.mini.is()) {
+                API.window.mini.off();
+                event.currentTarget.setAttribute("icon", "chevron-left");
+            } else {
+                API.window.mini.on();
+                event.currentTarget.setAttribute("icon", "chevron-right");
+            }
+        };
+
+        // Create mini button
+        var mini = document.createElement("paper-icon-button");
+        mini.id = "mini-button";
+        mini.setAttribute("icon", "chevron-left");
+        mini.setAttribute("title", "Toggle mini mode");
+        mini.addEventListener("click", miniClickListener);
 
         // Create FAB
         var fab = document.createElement("paper-fab");
@@ -31,6 +64,7 @@ API.dom = (function() {
         var settings = document.createElement("paper-icon-button");
         settings.id = "settings-button";
         settings.setAttribute("icon", "settings");
+        settings.setAttribute("title", "Open settings");
         settings.addEventListener("click", openSettings);
 
         // Create animation helper
@@ -40,6 +74,8 @@ API.dom = (function() {
 
         // Append elements to container
         container.appendChild(close);
+        container.appendChild(pin);
+        container.appendChild(mini);
         container.appendChild(settings);
         container.appendChild(time);
         container.appendChild(animationHelper);
@@ -65,30 +101,59 @@ API.dom = (function() {
         var settings = getSettings();
         getTimerContainer().appendChild(settings);
         var sliderDivs = settings.querySelectorAll(".slider-setting");
+        var switches = settings.querySelectorAll("paper-toggle-button");
         var time, slider;
         var discard = settings.querySelector(".discard-button");
         var save = settings.querySelector(".save-button");
 
-        discard.addEventListener("click", closeSettings);
-        save.addEventListener("click", closeSettings);
+        discard.addEventListener("click", function() {
+            discardSettings();
+            closeSettings();
+        });
+        save.addEventListener("click", function() {
+            saveSettings();
+            closeSettings();
+        });
 
-        function updateTime(event) {
-            var slider = event.currentTarget;
-            var div = slider.parentNode;
-            var time = div.querySelector(".time");
-            time.textContent = slider.immediateValue;
-        }
+        API.storage.settings.getAll().then(function(settings) {
+            var i;
+            for (i = 0; i < sliderDivs.length; i++) {
+                time = sliderDivs[i].querySelector(".time");
+                slider = sliderDivs[i].querySelector("paper-slider");
+                if (settings[slider.name]) {
+                    slider.value = settings[slider.name];
+                }
+                slider.setAttribute("last-value", slider.value);
+                slider.addEventListener("immediate-value-change", updateSliderTime);
+            }
+            for (i = 0; i < switches.length; i++) {
+                if (settings[switches[i].getAttribute("name")]) {
+                    switches[i].checked = settings[switches[i].getAttribute("name")];
+                }
+                switches[i].setAttribute("last-value", switches[i].checked);
+            }
+        });
 
-        for (var i = 0; i < sliderDivs.length; i++) {
-            time = sliderDivs[i].querySelector(".time");
-            slider = sliderDivs[i].querySelector("paper-slider");
+    }
 
-            slider.addEventListener("immediate-value-change", updateTime);
-        }
+    function updateSliderTime(event, value) {
+        var slider = event.currentTarget;
+        var div = slider.parentNode;
+        var time = div.querySelector(".time");
+
+        console.log("UPDATED TIME function LOL");
+        console.log(time);
+        value = value || slider.immediateValue;
+        console.log(value);
+        time.textContent = value;
+        console.log(time);
     }
 
     // Opens the settings section
     function openSettings(event) {
+        if (API.window.mini.is()) {
+            API.dom.getMini().click();
+        }
         API.window.resize("settings");
         getTimerContainer().style.height = "100%";
         var target = event && event.currentTarget ? event.currentTarget : false;
@@ -96,7 +161,7 @@ API.dom = (function() {
             color: "#2196f3",
             cover: true,
             time: false,
-            expand: 450,
+            expand: 570,
             close: true,
             fab: {
                 position: "right",
@@ -108,12 +173,49 @@ API.dom = (function() {
         }, target);
     }
 
+    // Discard settings
+    function discardSettings() {
+        var settings = getSettings();
+        var i;
+        // Sliders
+        var sliders = settings.querySelectorAll("paper-slider");
+        for (i = sliders.length - 1; i >= 0; i--) {
+            sliders[i].value = sliders[i].getAttribute("last-value");
+            updateSliderTime({
+                currentTarget: sliders[i]
+            }, sliders[i].getAttribute("last-value"));
+        }
+        // Switches
+        var switches = settings.querySelectorAll("paper-toggle-button");
+        for (i = switches.length - 1; i >= 0; i--) {
+            switches[i].checked = switches[i].getAttribute("last-value") === "true";
+        }
+    }
+
+    // Saves the settings
+    function saveSettings() {
+        var settings = getSettings();
+        var i;
+        // Sliders
+        var sliders = settings.querySelectorAll("paper-slider");
+        for (i = sliders.length - 1; i >= 0; i--) {
+            API.storage.settings.set(sliders[i].name, sliders[i].value);
+            sliders[i].setAttribute("last-value", sliders[i].value);
+        }
+        // Switches
+        var switches = settings.querySelectorAll("paper-toggle-button");
+        for (i = switches.length - 1; i >= 0; i--) {
+            API.storage.settings.set(switches[i].getAttribute("name"), switches[i].checked);
+            switches[i].setAttribute("last-value", switches[i].checked);
+        }
+    }
+
     // Closes the settings section
     function closeSettings() {
         var target = event && event.currentTarget ? event.currentTarget : false;
         API.timer.changeStatus({
             color: "#9c27b0",
-            expand: 550,
+            expand: 680,
             time: false,
             close: true,
             cover: true,
@@ -184,6 +286,16 @@ API.dom = (function() {
         return document.getElementById("close-button");
     }
 
+    // Gets the pin button
+    function getPin() {
+        return document.getElementById("pin-button");
+    }
+
+    // Gets the pin button
+    function getMini() {
+        return document.getElementById("mini-button");
+    }
+
     // Gets the settings button
     function getSettingsButton() {
         return document.getElementById("settings-button");
@@ -224,6 +336,8 @@ API.dom = (function() {
         getAnimationHelper: getAnimationHelper,
         getTime: getTime,
         getClose: getClose,
+        getPin: getPin,
+        getMini: getMini,
         getSettingsButton: getSettingsButton,
         updateTime: updateTime
     };

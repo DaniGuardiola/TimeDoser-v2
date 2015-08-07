@@ -40,6 +40,8 @@ API.timer = (function() {
         var helper = API.dom.getAnimationHelper();
         var time = API.dom.getTime();
         var close = API.dom.getClose();
+        var pin = API.dom.getPin();
+        var mini = API.dom.getMini();
         var settings = API.dom.getSettingsButton();
 
         // Set target
@@ -84,9 +86,11 @@ API.timer = (function() {
         // Activate helper
         helper.classList.add("on");
 
-        // Hide time and close button
+        // Hide time, close, pin and mini button
         time.classList.remove("on");
         close.classList.remove("on");
+        pin.classList.remove("on");
+        mini.classList.remove("on");
         settings.classList.remove("on");
 
         // Set FAB icon
@@ -111,6 +115,8 @@ API.timer = (function() {
         var fab = API.dom.getFAB();
         var time = API.dom.getTime();
         var close = API.dom.getClose();
+        var pin = API.dom.getPin();
+        var mini = API.dom.getMini();
         var settings = API.dom.getSettingsButton();
 
         // Get opt from tmp
@@ -149,6 +155,8 @@ API.timer = (function() {
         if (opt.close) {
             close.classList.add("on");
         }
+        pin.classList.add("on");
+        mini.classList.add("on");
 
         // Show settings button
         console.log("SETTINGS: " + opt.settings);
@@ -167,6 +175,7 @@ API.timer = (function() {
     // Sets the standby status
     function setStandbyStatus() {
         stop();
+        API.window.mini.off();
         data.changingStatus = true;
         data.status = "standby";
         statusChangeAnimation({
@@ -185,6 +194,16 @@ API.timer = (function() {
     function setWorkStatus() {
         data.changingStatus = true;
         data.status = "work";
+        API.storage.settings.get(["notifications"]).then(function(storage) {
+            if (storage.notifications) {
+                API.notifications.work();
+            }
+        });
+        API.storage.settings.get(["audio"]).then(function(storage) {
+            if (storage.audio) {
+                document.getElementById("audio-work").play();
+            }
+        });
         statusChangeAnimation({
             color: "#3f51b5",
             time: true,
@@ -195,9 +214,15 @@ API.timer = (function() {
                 icon: "av:stop"
             },
             callback: function() {
-                setTime(0, 5);
-                countdown();
-                data.changingStatus = false;
+                API.storage.settings.get(["workTime"]).then(function(storage) {
+                    if (window.MUSIC_PLEASE) {
+                        setTime(0, 1);
+                    } else {
+                        setTime(storage.workTime, 0);
+                    }
+                    data.changingStatus = false;
+                    countdown();
+                });
             }
         });
     }
@@ -206,6 +231,16 @@ API.timer = (function() {
     function setBreakStatus() {
         data.changingStatus = true;
         data.status = "break";
+        API.storage.settings.get(["notifications"]).then(function(storage) {
+            if (storage.notifications) {
+                API.notifications.break();
+            }
+        });
+        API.storage.settings.get(["audio"]).then(function(storage) {
+            if (storage.audio) {
+                document.getElementById("audio-break").play();
+            }
+        });
         statusChangeAnimation({
             color: "#009688",
             time: true,
@@ -216,9 +251,25 @@ API.timer = (function() {
                 icon: "av:skip-next"
             },
             callback: function() {
-                setTime(0, 5);
-                countdown();
-                data.changingStatus = false;
+                API.storage.settings.get(["shortBreakTime", "longBreakTime"]).then(function(storage) {
+                    if (window.MUSIC_PLEASE) {
+                        setTime(0, 1);
+                        data.changingStatus = false;
+                        countdown();
+                    } else {
+                        API.storage.cache.get(["workTimeCount"]).then(function(cache) {
+                            if (+cache.workTimeCount < 4) {
+                                setTime(storage.shortBreakTime, 0);
+                                API.storage.cache.set("workTimeCount", +cache.workTimeCount + 1);
+                            } else {
+                                setTime(storage.longBreakTime, 0);
+                                API.storage.cache.set("workTimeCount", 0);
+                            }
+                            countdown();
+                            data.changingStatus = false;
+                        });
+                    }
+                });
             }
         });
     }
@@ -349,6 +400,7 @@ API.timer = (function() {
     // Stops the timer
     function stop(callback) {
         clearTimeout(data.countdownTimeout);
+        API.storage.cache.set("workTimeCount", 0);
         if (callback) {
             callback();
         }

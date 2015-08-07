@@ -12,9 +12,11 @@
     </script>
     <link rel="import" href="/bower_components/iron-icons/av-icons.html">
     <link rel="import" href="/bower_components/iron-icons/maps-icons.html">
+    <link rel="import" href="/bower_components/iron-icons/social-icons.html">
     <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
     <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
     <link rel="import" href="/bower_components/paper-slider/paper-slider.html">
+    <link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
     <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
     <!-- Script 
     <script src="/js/script.js"></script>
@@ -28,19 +30,26 @@
     <script src="/js/module/timer.js"></script>
     <script src="/js/module/window.js"></script>
     <script src="/js/module/tour.js"></script>
+    <script src="/js/module/notifications.js"></script>
     <!-- End debug -->
     <link rel="import" href="/css/style.html">
     <!-- Components styles -->
 </head>
 
 <body unresolved>
+    <audio id="audio-work">
+        <source src="/audio/work.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-break">
+        <source src="/audio/break.mp3" type="audio/mpeg">
+    </audio>
     <template is="dom-bind">
         <div id="timedoser-settings" class="vertical-section">
             <div class="header title center horizontal layout">
                 <div class="text-title">Settings</div>
                 <div class="space"></div>
                 <paper-icon-button class="discard-button" icon="close"></paper-icon-button>
-                <paper-icon-button class="save-button" icon="done"></paper-icon-button>
+                <paper-icon-button style="margin-right: 4px;" class="save-button" icon="done"></paper-icon-button>
             </div>
             <div class="settings-wrapper">
                 <div class="title center horizontal layout">
@@ -49,7 +58,7 @@
                 </div>
                 <div class="slider-setting center horizontal layout">
                     <span class="time subhead">{{workTime}}</span>
-                    <paper-slider class="indigo" value="{{workTime}}" min="15" max="60" step="5"></paper-slider>
+                    <paper-slider name="workTime" class="indigo" value="{{workTime}}" min="15" max="60" step="5"></paper-slider>
                 </div>
                 <div class="title center horizontal layout">
                     <iron-icon icon="maps:local-cafe"></iron-icon>
@@ -57,7 +66,7 @@
                 </div>
                 <div class="slider-setting center horizontal layout">
                     <span class="time subhead">{{shortBreakTime}}</span>
-                    <paper-slider class="green" value="{{shortBreakTime}}" min="5" max="15" step="5"></paper-slider>
+                    <paper-slider name="shortBreakTime" class="green" value="{{shortBreakTime}}" min="5" max="15" step="5"></paper-slider>
                 </div>
                 <div class="title center horizontal layout">
                     <iron-icon icon="event-seat"></iron-icon>
@@ -65,7 +74,19 @@
                 </div>
                 <div class="slider-setting center horizontal layout">
                     <span class="time subhead">{{longBreakTime}}</span>
-                    <paper-slider class="light-green" value="{{longBreakTime}}" min="15" max="30" step="5"></paper-slider>
+                    <paper-slider name="longBreakTime" class="light-green" value="{{longBreakTime}}" min="15" max="30" step="5"></paper-slider>
+                </div>
+                <div class="switch-setting center horizontal layout">
+                    <iron-icon icon="social:notifications"></iron-icon>
+                    <span class="subhead">Notifications</span>
+                    <div class="space"></div>
+                    <paper-toggle-button name="notifications"></paper-toggle-button>
+                </div>
+                <div class="switch-setting center horizontal layout">
+                    <iron-icon icon="av:volume-up"></iron-icon>
+                    <span class="subhead">Audio</span>
+                    <div class="space"></div>
+                    <paper-toggle-button name="audio"></paper-toggle-button>
                 </div>
             </div>
         </div>

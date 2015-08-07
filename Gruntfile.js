@@ -56,6 +56,12 @@ module.exports = function(grunt) {
                 src: "**",
                 dest: "bin/meta/"
             },
+            audio: {
+                expand: true,
+                cwd: "resources/audio",
+                src: "**",
+                dest: "bin/audio/"
+            },
             locales: {
                 expand: true,
                 cwd: "_locales",
@@ -110,6 +116,7 @@ module.exports = function(grunt) {
         "uglify:script",
         "uglify:background",
         "copy:manifest",
+        "copy:audio",
         "copy:meta",
         "copy:locales",
         "copy:view",

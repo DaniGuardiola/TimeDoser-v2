@@ -2,5 +2,9 @@
 "appname":{"message":"TimeDoser"},
 "appdescription":{"message":"Dosify your time"},
 "msg1":{"message":"work"},
-"msg2":{"message":"break"}
+"msg2":{"message":"break"},
+"msg3":{"message":"Work!"},
+"msg4":{"message":"Time to focus and be productive"},
+"msg5":{"message":"Break"},
+"msg6":{"message":"Inhale... Exhale... Inhale..."}
 }

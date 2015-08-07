@@ -1,5 +1,10 @@
 {
 "appname":{"message":"TimeDoser"},
 "appdescription":{"message":"Dosifica tu tiempo"},
-"msg1":{"message":"trabajo"}
+"msg1":{"message":"trabajo"},
+"msg2":{"message":"descanso"},
+"msg3":{"message":"¡A trabajar!"},
+"msg4":{"message":"Es hora de concentrarse y producir"},
+"msg5":{"message":"Decanso"},
+"msg6":{"message":"Inspira... Espira... Inspira..."}
 }

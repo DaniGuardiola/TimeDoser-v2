@@ -145,3 +145,45 @@ API.storage = (function() {
         managed: storageApi.managed
     };
 })();
+
+(function transformOldSettingsAndInitNewSettings() {
+    "use strict";
+    API.storage.settings.getAll().then(function(storage) {
+        /*
+        if (storage.setting !== null) {
+            if (storage.newKey) {
+                return;
+            }
+            API.storage.settings.set("newKey", storage.setting);
+            API.storage.settings.remove("setting");
+        }
+        */
+        if (!storage.workTime) {
+            API.storage.settings.set("workTime", 25);
+        }
+        if (!storage.hasOwnProperty("notifications")) {
+            API.storage.settings.set("notifications", true);
+        }
+        if (!storage.hasOwnProperty("audio")) {
+            API.storage.settings.set("audio", true);
+        }
+        if (storage.breakShortTime !== null) {
+            if (storage.shortBreakTime) {
+                return;
+            }
+            API.storage.settings.set("shortBreakTime", storage.breakShortTime);
+            API.storage.settings.remove("breakShortTime");
+        } else if (!storage.shortBreakTime) {
+            API.storage.settings.set("shortBreakTime", 5);
+        }
+        if (storage.breakLongTime !== null) {
+            if (storage.longBreakTime) {
+                return;
+            }
+            API.storage.settings.set("longBreakTime", storage.breakLongTime);
+            API.storage.settings.remove("breakLongTime");
+        } else if (!storage.longBreakTime) {
+            API.storage.settings.set("longBreakTime", 15);
+        }
+    });
+})();

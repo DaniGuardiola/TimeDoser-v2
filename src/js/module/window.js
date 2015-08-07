@@ -6,13 +6,17 @@ API.window = (function() {
             width: 224,
             height: 112
         },
+        mini: {
+            width: 100,
+            height: 100
+        },
         tour: {
             width: 352,
             height: 368
         },
         settings: {
             width: 224,
-            height: 196
+            height: 294
         }
     };
 
@@ -30,6 +34,17 @@ API.window = (function() {
         resizePx(presets[preset].width, presets[preset].height);
     }
 
+    // Toggles the window on top option
+    function togglePin() {
+        get().setAlwaysOnTop(!isPinned());
+        return !isPinned();
+    }
+
+    // Checks if the window on top option is enabled
+    function isPinned() {
+        return get().isAlwaysOnTop();
+    }
+
     // Get window
     function get() {
         return chrome.app.window.current();
@@ -40,9 +55,30 @@ API.window = (function() {
         get().close();
     }
 
+    function miniOn() {
+        resize("mini");
+        API.dom.getTimerContainer().classList.add("mini");
+    }
+
+    function miniOff() {
+        resize("standard");
+        API.dom.getTimerContainer().classList.remove("mini");
+    }
+
+    function isMini() {
+        return API.dom.getTimerContainer().classList.contains("mini");
+    }
+
     // Publish the API
     return {
         resize: resize,
-        close: close
+        close: close,
+        isPinned: isPinned,
+        togglePin: togglePin,
+        mini: {
+            on: miniOn,
+            off: miniOff,
+            is: isMini
+        }
     };
 })();

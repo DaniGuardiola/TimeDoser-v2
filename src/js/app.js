@@ -5,16 +5,13 @@
     // Start the app
     function start() {
         API.window.resize("standard");
-        API.tools.firstTime(function() {
-            // If it is the first time opening the app
+        API.storage.settings.get(["notFirstTime"]).then(function(storage) {
             API.dom.renderTimer(function() {
                 API.timer.init();
-                API.tour.start();
-            });
-        }, function() {
-            // If it is not
-            API.dom.renderTimer(function() {
-                API.timer.init();
+                if (!storage.notFirstTime) {
+                    API.tour.start();
+                    API.storage.settings.set("notFirstTime", true);
+                }
             });
         });
     }

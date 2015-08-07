@@ -7,13 +7,14 @@
         }
     },
     "manifest_version": 2,
-    "version": "0.1.0.2",
+    "version": "0.0.9",
     "icons": {
         "128": "meta/icon-128.png"
     },
     "permissions": [
         "app.window.alwaysOnTop",
-        "storage"
+        "storage",
+        "notifications"
     ],
     "commands": {},
     "offline_enabled": true,
