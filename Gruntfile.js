@@ -94,6 +94,13 @@ module.exports = function(grunt) {
                     "bin/view/timer.html": "bin/view/timer.html"
                 }
             }
+        },
+        nwjs: {
+            options: {
+                platforms: ["win", "osx", "linux"],
+                buildDir: "nwjs" // Where the build version of my NW.js app is saved
+            },
+            src: ["bin"] // Your NW.js app
         }
     });
 
@@ -106,9 +113,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks("grunt-exec");
     grunt.loadNpmTasks("grunt-minify-html");
+    grunt.loadNpmTasks("grunt-nw-builder");
 
     // Default task.
     grunt.registerTask("default", ["build"]);
+
+    grunt.registerTask("build-nwjs", ["build", "nwjs"]);
 
     grunt.registerTask("build", [
         "clean:build",
