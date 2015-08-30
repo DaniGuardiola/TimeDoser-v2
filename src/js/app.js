@@ -4,6 +4,12 @@
     window.API = {};
     // Start the app
     function start() {
+        chrome.runtime.getPlatformInfo(function(info) {
+            document.body.classList.add(info.os);
+            if (info.os === "win" || info.os === "mac") {
+                document.body.classList.add("minsizebug");
+            }
+        });
         API.window.resize("standard");
         API.storage.settings.get(["notFirstTime"]).then(function(storage) {
             API.dom.renderTimer(function() {

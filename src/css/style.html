@@ -50,13 +50,27 @@ body {
     width: 100px;
 }
 
+body.minsizebug #timer-container.mini {
+    width: 122px;
+}
+
 body:not([status="standby"]) #timer-container.mini #main-fab {
     left: 100px;
     top: 22px;
 }
 
+body.minsizebug:not([status="standby"]) #timer-container.mini #main-fab {
+    left: 122px;
+    top: 22px;
+}
+
 body[status="standby"] #timer-container.mini #main-fab {
     left: 22px;
+    top: 22px;
+}
+
+body.minsizebug[status="standby"] #timer-container.mini #main-fab {
+    left: 33px;
     top: 22px;
 }
 
