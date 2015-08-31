@@ -6,7 +6,7 @@
     function start() {
         chrome.runtime.getPlatformInfo(function(info) {
             document.body.classList.add(info.os);
-            if (info.os === "win" || info.os === "mac") {
+            if (info.os === "win") {
                 document.body.classList.add("minsizebug");
             }
         });
@@ -14,9 +14,10 @@
         API.storage.settings.get(["notFirstTime"]).then(function(storage) {
             API.dom.renderTimer(function() {
                 API.timer.init();
+                API.storage.settings.set("notFirstTime", false);
                 if (!storage.notFirstTime) {
-                    API.tour.start();
-                    API.storage.settings.set("notFirstTime", true);
+                    //API.tour.start();
+                    //API.storage.settings.set("notFirstTime", true);
                 }
             });
         });
