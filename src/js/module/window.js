@@ -71,6 +71,7 @@ API.window = (function() {
 
     // Publish the API
     return {
+        get: get,
         resize: resize,
         close: close,
         isPinned: isPinned,

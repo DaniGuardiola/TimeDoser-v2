@@ -374,6 +374,20 @@ API.timer = (function() {
             document.title = DOMminute + ":" + DOMsecond + " (" + chrome.i18n.getMessage(i18nMSG) + ")";
             */
 
+        if (data.time.minute === 0 && data.time.second <= 5 && data.time.second > 1) {
+            API.window.get().setAlwaysOnTop(true);
+            API.window.get().drawAttention();
+            API.window.get().clearAttention();
+        }
+        // Resetting always on top and focusing the last 1 second
+        if (data.time.minute === 0 && data.time.second < 1) {
+            API.storage.settings.get(["alwaysOnTop"]).then(function(storage) {
+                API.window.get().setAlwaysOnTop(storage.alwaysOnTop ? true : false);
+                API.window.get().drawAttention();
+                API.window.get().clearAttention();
+            });
+        }
+
         // If countdown reaches the end
         if (data.time.minute === 0 && data.time.second === 0) {
             // If there's a next status parameter
