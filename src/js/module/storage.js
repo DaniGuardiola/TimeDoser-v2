@@ -167,22 +167,20 @@ API.storage = (function() {
         if (!storage.hasOwnProperty("audio")) {
             API.storage.settings.set("audio", true);
         }
-        if (storage.breakShortTime !== null) {
-            if (storage.shortBreakTime) {
-                return;
+        if (storage.hasOwnProperty("breakShortTime")) {
+            if (!storage.hasOwnProperty("shortBreakTime")) {
+                API.storage.settings.set("shortBreakTime", storage.breakShortTime);
             }
-            API.storage.settings.set("shortBreakTime", storage.breakShortTime);
             API.storage.settings.remove("breakShortTime");
-        } else if (!storage.shortBreakTime) {
+        } else if (!storage.hasOwnProperty("shortBreakTime")) {
             API.storage.settings.set("shortBreakTime", 5);
         }
-        if (storage.breakLongTime !== null) {
-            if (storage.longBreakTime) {
-                return;
+        if (storage.hasOwnProperty("breakLongTime")) {
+            if (!storage.hasOwnProperty("longBreakTime")) {
+                API.storage.settings.set("longBreakTime", storage.breakLongTime);
             }
-            API.storage.settings.set("longBreakTime", storage.breakLongTime);
             API.storage.settings.remove("breakLongTime");
-        } else if (!storage.longBreakTime) {
+        } else if (!storage.hasOwnProperty("longBreakTime")) {
             API.storage.settings.set("longBreakTime", 15);
         }
     });
