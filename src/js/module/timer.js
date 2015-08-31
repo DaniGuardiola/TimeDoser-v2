@@ -176,6 +176,7 @@ API.timer = (function() {
     function setStandbyStatus() {
         stop();
         API.window.mini.off();
+        document.title = API.tools.i18n("appname");
         data.changingStatus = true;
         data.status = "standby";
         statusChangeAnimation({
@@ -357,22 +358,6 @@ API.timer = (function() {
 
         // Update time element
         API.dom.updateTime(data.time.minute, data.time.second);
-
-        /* TODO: title updater
-            // Focus the window  and always on top from 5s to 2s
-            if (libs.timer.data.time.minute === 0 && libs.timer.data.time.second <= 5 && libs.timer.data.time.second > 1) {
-                libs.window.data.this.setAlwaysOnTop(true);
-                libs.window.data.this.focus();
-                console.log("[timer]: [countdown] Focus the window  and always on top from 5s to 2s");
-            }
-            // Title updater
-            if (data.status === "work") {
-                var i18nMSG = "titleWork";
-            } else if (data.status === "break") {
-                var i18nMSG = "titleBreak";
-            }
-            document.title = DOMminute + ":" + DOMsecond + " (" + chrome.i18n.getMessage(i18nMSG) + ")";
-            */
 
         if (data.time.minute === 0 && data.time.second <= 5 && data.time.second > 1) {
             API.window.get().setAlwaysOnTop(true);
