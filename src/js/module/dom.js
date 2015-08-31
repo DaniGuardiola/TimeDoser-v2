@@ -125,6 +125,7 @@ API.dom = (function() {
                 }
                 slider.setAttribute("last-value", slider.value);
                 slider.addEventListener("immediate-value-change", updateSliderTime);
+                slider.addEventListener("change", updateSliderTime);
             }
             for (i = 0; i < switches.length; i++) {
                 if (settings[switches[i].getAttribute("name")]) {
@@ -146,6 +147,7 @@ API.dom = (function() {
         value = value || slider.immediateValue;
         console.log(value);
         time.textContent = value;
+        //slider.value = value;
         console.log(time);
     }
 
