@@ -28,7 +28,7 @@ API.dom = (function() {
         pin.setAttribute("title", "Show in top of other windows");
         pin.addEventListener("click", pinClickListener);
 
-        var miniClickListener = function(event) {
+        var miniClickListener = function() {
             if (API.window.mini.is()) {
                 API.window.mini.off();
                 //event.currentTarget.setAttribute("icon", "chevron-left");
@@ -54,6 +54,11 @@ API.dom = (function() {
         // Create container
         var container = document.createElement("div");
         container.id = "timer-container";
+        API.storage.settings.get(["mini"]).then(function(storage) {
+            if (storage.mini) {
+                container.classList.add("mini");
+            }
+        });
 
         // Create timer text
         var time = document.createElement("div");

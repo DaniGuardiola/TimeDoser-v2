@@ -58,7 +58,7 @@ body.minsizebug #timer-container.mini {
     width: 122px;
 }
 
-body:not([status="standby"]) #timer-container.mini #main-fab {
+body:not([status="standby"]):not([loading]) #timer-container.mini #main-fab {
     left: 100px;
     top: 22px;
 }
@@ -68,7 +68,8 @@ body.minsizebug:not([status="standby"]) #timer-container.mini #main-fab {
     top: 22px;
 }
 
-body[status="standby"] #timer-container.mini #main-fab {
+body[status="standby"] #timer-container.mini #main-fab,
+body[loading] #timer-container.mini #main-fab {
     left: 22px;
     top: 22px;
 }

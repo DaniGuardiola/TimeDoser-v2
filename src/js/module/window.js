@@ -58,11 +58,13 @@ API.window = (function() {
     function miniOn() {
         resize("mini");
         API.dom.getTimerContainer().classList.add("mini");
+        API.storage.settings.set("mini", true);
     }
 
     function miniOff() {
         resize("standard");
         API.dom.getTimerContainer().classList.remove("mini");
+        API.storage.settings.set("mini", false);
     }
 
     function isMini() {

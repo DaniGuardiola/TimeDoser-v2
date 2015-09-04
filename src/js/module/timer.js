@@ -177,20 +177,24 @@ API.timer = (function() {
     // Sets the standby status
     function setStandbyStatus() {
         stop();
-        API.window.mini.off();
         document.title = API.tools.i18n("appname");
         data.changingStatus = true;
         data.status = "standby";
-        statusChangeAnimation({
-            color: "#9c27b0",
-            time: false,
-            close: true,
-            settings: true,
-            fab: {
-                position: "right",
-                icon: "av:play-arrow"
-            }
-        }, document.getElementById("timer-container").classList.contains("mini") ? document.getElementById("timer-text") : null);
+        API.storage.settings.get(["mini"]).then(function(storage) {
+            statusChangeAnimation({
+                color: "#9c27b0",
+                time: false,
+                close: true,
+                settings: true,
+                callback: function() {
+                    document.body.removeAttribute("loading");
+                },
+                fab: {
+                    position: "right",
+                    icon: "av:play-arrow"
+                }
+            }, storage.mini ? document.getElementById("timer-text") : null);
+        });
     }
 
     // Sets the work status
