@@ -36,7 +36,8 @@ API.window = (function() {
 
     // Toggles the window on top option
     function togglePin() {
-        get().setAlwaysOnTop(!isPinned());
+        get().setAlwaysOnTop(!isPinned());        
+        API.storage.settings.set("alwaysOnTop", !isPinned());
         return !isPinned();
     }
 

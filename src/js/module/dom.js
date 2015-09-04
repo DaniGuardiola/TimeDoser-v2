@@ -54,9 +54,13 @@ API.dom = (function() {
         // Create container
         var container = document.createElement("div");
         container.id = "timer-container";
-        API.storage.settings.get(["mini"]).then(function(storage) {
+
+        API.storage.settings.get(["mini", "alwaysOnTop"]).then(function(storage) {
             if (storage.mini) {
                 container.classList.add("mini");
+            }
+            if (storage.alwaysOnTop) {
+                pin.click();
             }
         });
 
