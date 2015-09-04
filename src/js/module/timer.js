@@ -54,13 +54,15 @@ API.timer = (function() {
         var position = {
             height: target.getBoundingClientRect().height,
             width: target.getBoundingClientRect().width,
-            top: target.offsetTop,
-            left: target.offsetLeft
+            top: target.getBoundingClientRect().top,
+            left: target.getBoundingClientRect().left
         };
+        console.log(position);
         position = {
             top: position.top + (position.height / 2),
             left: position.left + (position.width / 2)
         };
+        console.log(position);
 
         // Set helper color and initial position and size
         helper.style.top = position.top + "px";
@@ -188,7 +190,7 @@ API.timer = (function() {
                 position: "right",
                 icon: "av:play-arrow"
             }
-        });
+        }, document.getElementById("timer-container").classList.contains("mini") ? document.getElementById("timer-text") : null);
     }
 
     // Sets the work status
@@ -225,7 +227,7 @@ API.timer = (function() {
                     countdown();
                 });
             }
-        });
+        }, document.getElementById("timer-container").classList.contains("mini") ? document.getElementById("timer-text") : null);
     }
 
     // Sets the break status
@@ -272,7 +274,7 @@ API.timer = (function() {
                     }
                 });
             }
-        });
+        }, document.getElementById("timer-container").classList.contains("mini") ? document.getElementById("timer-text") : null);
     }
 
     // Routes the status input to the appropiate function
@@ -345,10 +347,34 @@ API.timer = (function() {
         API.dom.updateTime(minute, second);
     }
 
+    var attentionSeconds = -1;
+
+    // Attention
+
+    function attention(seconds) {
+        if (seconds) {
+            attentionSeconds = seconds;
+        }
+        if (attentionSeconds > 0) {
+            API.window.get().setAlwaysOnTop(true);
+            API.window.get().drawAttention();
+            API.window.get().clearAttention();
+            attentionSeconds--;
+            return;
+        } else if (attentionSeconds === 0) {
+            API.storage.settings.get(["alwaysOnTop"]).then(function(storage) {
+                API.window.get().setAlwaysOnTop(storage.alwaysOnTop ? true : false);
+            });
+            attentionSeconds = -1;
+        }
+    }
+
     // Recurrent countdown
     function countdown(next) {
         // Parameter default value
         next = next || false;
+
+        var attentionTime = false;
 
         // If second < 0, -1 minute
         if (data.time.second < 0) {
@@ -359,18 +385,8 @@ API.timer = (function() {
         // Update time element
         API.dom.updateTime(data.time.minute, data.time.second);
 
-        if (data.time.minute === 0 && data.time.second <= 5 && data.time.second > 1) {
-            API.window.get().setAlwaysOnTop(true);
-            API.window.get().drawAttention();
-            API.window.get().clearAttention();
-        }
-        // Resetting always on top and focusing the last 1 second
-        if (data.time.minute === 0 && data.time.second < 1) {
-            API.storage.settings.get(["alwaysOnTop"]).then(function(storage) {
-                API.window.get().setAlwaysOnTop(storage.alwaysOnTop ? true : false);
-                API.window.get().drawAttention();
-                API.window.get().clearAttention();
-            });
+        if (data.time.minute === 0 && data.time.second === 3) {
+            attentionTime = 6;
         }
 
         // If countdown reaches the end
@@ -394,11 +410,13 @@ API.timer = (function() {
                 countdown(next);
             }, 1000);
         }
+        attention(attentionTime);
     }
 
     // Stops the timer
     function stop(callback) {
         clearTimeout(data.countdownTimeout);
+        attention(0);
         API.storage.cache.set("workTimeCount", 0);
         if (callback) {
             callback();
