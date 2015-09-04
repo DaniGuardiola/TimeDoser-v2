@@ -50,6 +50,10 @@ body {
     width: 100px;
 }
 
+#timer-container.mini #mini-button {
+    transform: rotate(180deg);
+}
+
 body.minsizebug #timer-container.mini {
     width: 122px;
 }
@@ -74,18 +78,17 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
     top: 22px;
 }
 
-#timer-container.mini #settings-button.on {
-    top: initial;
+#timer-container.mini #settings-button {
+    top: 60px;
     left: 0;
-    bottom: 0;
-    opacity: 0.5;
+    color: #CE93D8;
+    transform: rotate(-60deg);
 }
 
 #timer-container.mini #timer-text {
     right: initial;
     top: 30px;
-    left: 50%;
-    transform: translate(-50%);
+    left: 8px;
 }
 
 #timedoser-settings {
@@ -198,7 +201,7 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
     position: absolute;
     top: 28px;
     left: 28px;
-    transition: left 0.5s cubic-bezier(.55, 0, .1, 1), opacity 0.5s;
+    transition: left 0.5s cubic-bezier(.55, 0, .1, 1), top, 0.5s cubic-bezier(.55, 0, .1, 1), opacity 0.5s;
 }
 
 #main-fab:not(.on) {
@@ -228,18 +231,33 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
 #close-button,
 #pin-button,
 #mini-button {
-    color: white;
-    opacity: 0.5;
-    transition: opacity 0.25s 0.5s;
+    transition: opacity 0.25s 0.25s, transform 0.5s;
+    opacity: 1;
+}
+
+body[status="standby"] #close-button,
+body[status="standby"] #pin-button,
+body[status="standby"] #mini-button {
+    color: #CE93D8;
+}
+
+body[status="work"] #close-button,
+body[status="work"] #pin-button,
+body[status="work"] #mini-button {
+    color: #9FA8DA;
+}
+
+body[status="break"] #close-button,
+body[status="break"] #pin-button,
+body[status="break"] #mini-button {
+    color: #80CBC4;
 }
 
 #pin-button {
     float: right;
-    opacity: 0.5;
 }
 
 #mini-button {
-    opacity: 0.5;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -251,7 +269,7 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
     left: 40px;
     color: white;
     opacity: 1;
-    transition: opacity 0.25s 0.5s;
+    transition: opacity 0.25s 0.25s, color 0.5s, top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1), transform 0.5s cubic-bezier(.55, 0, .1, 1);
 }
 
 #timer-text {
@@ -259,8 +277,10 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
     opacity: 1;
     color: #fff;
     top: 36.5px;
-    right: 28px;
-    transition: opacity 0.25s 0.5s;
+    left: 112px;
+    width: 84px;
+    transform: translate(0);
+    transition: opacity 0.25s 0.25s, left 0.5s cubic-bezier(.55, 0, .1, 1), top 0.5s cubic-bezier(.55, 0, .1, 1);
     -webkit-app-region: drag;
     @apply(--paper-font-display1);
     /* Temporal until I get ^ that working */
@@ -279,7 +299,6 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
 #mini-button:not(.on),
 #settings-button:not(.on) {
     opacity: 0;
-    transition: opacity 0.25s 0.25s;
     pointer-events: none;
 }
 

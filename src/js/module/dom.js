@@ -31,10 +31,10 @@ API.dom = (function() {
         var miniClickListener = function(event) {
             if (API.window.mini.is()) {
                 API.window.mini.off();
-                event.currentTarget.setAttribute("icon", "chevron-left");
+                //event.currentTarget.setAttribute("icon", "chevron-left");
             } else {
                 API.window.mini.on();
-                event.currentTarget.setAttribute("icon", "chevron-right");
+                //event.currentTarget.setAttribute("icon", "chevron-right");
             }
         };
 
