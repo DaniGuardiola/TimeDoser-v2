@@ -188,6 +188,7 @@ API.timer = (function() {
                 settings: true,
                 callback: function() {
                     document.body.removeAttribute("loading");
+                    data.changingStatus = false;
                 },
                 fab: {
                     position: "right",

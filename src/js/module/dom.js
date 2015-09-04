@@ -159,7 +159,7 @@ API.dom = (function() {
     // Opens the settings section
     function openSettings(event) {
         if (API.window.mini.is()) {
-            API.dom.getMini().click();
+            getTimerContainer().classList.remove("mini");
         }
         API.window.resize("settings");
         getTimerContainer().style.height = "100%";
@@ -233,7 +233,14 @@ API.dom = (function() {
                 icon: "av:play-arrow"
             },
             callback: function() {
-                API.window.resize("standard");
+                API.storage.settings.get(["mini"]).then(function(storage) {
+                    if (storage.mini) {
+                        getTimerContainer().classList.add("mini");
+                        API.window.resize("mini");
+                    } else {
+                        API.window.resize("standard");
+                    }
+                });
                 getSettings().classList.remove("on");
                 getTimerContainer().style.height = "";
             }
