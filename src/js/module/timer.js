@@ -7,7 +7,8 @@ API.timer = (function() {
         countdownTimeout: false,
         time: {
             minute: 0,
-            second: 0
+            second: 0,
+            break: 0
         }
     };
 
@@ -57,12 +58,10 @@ API.timer = (function() {
             top: target.getBoundingClientRect().top,
             left: target.getBoundingClientRect().left
         };
-        console.log(position);
         position = {
             top: position.top + (position.height / 2),
             left: position.left + (position.width / 2)
         };
-        console.log(position);
 
         // Set helper color and initial position and size
         helper.style.top = position.top + "px";
@@ -126,7 +125,6 @@ API.timer = (function() {
 
         // Set fab fadein
         if (opt.fab.fadein) {
-            console.log("IM HAPPENING");
             fab.classList.remove("on");
             setTimeout(function() {
                 fab.style.transition = "";
@@ -161,9 +159,7 @@ API.timer = (function() {
         mini.classList.add("on");
 
         // Show settings button
-        console.log("SETTINGS: " + opt.settings);
         if (opt.settings) {
-            console.log(settings);
             settings.classList.add("on");
         }
 
@@ -176,7 +172,7 @@ API.timer = (function() {
 
     // Sets the standby status
     function setStandbyStatus() {
-        stop();
+        stop(null, true);
         document.title = API.tools.i18n("appname");
         data.changingStatus = true;
         data.status = "standby";
@@ -259,18 +255,23 @@ API.timer = (function() {
                 icon: "av:skip-next"
             },
             callback: function() {
-                API.storage.settings.get(["shortBreakTime", "longBreakTime"]).then(function(storage) {
-                    if (window.MUSIC_PLEASE) {
+                API.storage.settings.get(["shortBreakTime", "longBreakTime", "workTimeAmount"]).then(function(storage) {
+                    if (window.MUSIC_PLEASE) { // Easter egg
                         setTime(0, 1);
                         data.changingStatus = false;
                         countdown();
                     } else {
                         API.storage.cache.get(["workTimeCount"]).then(function(cache) {
-                            if (+cache.workTimeCount < 4) {
-                                setTime(storage.shortBreakTime, 0);
+                            var plus = {
+                                minute: Math.floor(data.time.break / 60),
+                                second: data.time.break % 60
+                            };
+                            data.time.break = 0;
+                            if (+cache.workTimeCount < storage.workTimeAmount - 1) {
+                                setTime(storage.shortBreakTime + plus.minute, plus.second);
                                 API.storage.cache.set("workTimeCount", +cache.workTimeCount + 1);
                             } else {
-                                setTime(storage.longBreakTime, 0);
+                                setTime(storage.longBreakTime + plus.minute, plus.second);
                                 API.storage.cache.set("workTimeCount", 0);
                             }
                             countdown();
@@ -315,8 +316,7 @@ API.timer = (function() {
         } else if (getStatus() === "work") {
             setStatus("standby");
         } else if (getStatus() === "break") {
-            stop();
-            setStatus("work");
+            fastCountdown("work", true);
         }
     }
 
@@ -355,23 +355,27 @@ API.timer = (function() {
     var attentionSeconds = -1;
 
     // Attention
-
     function attention(seconds) {
         if (seconds) {
             attentionSeconds = seconds;
         }
-        if (attentionSeconds > 0) {
-            API.window.get().setAlwaysOnTop(true);
-            API.window.get().drawAttention();
-            API.window.get().clearAttention();
-            attentionSeconds--;
-            return;
-        } else if (attentionSeconds === 0) {
-            API.storage.settings.get(["alwaysOnTop"]).then(function(storage) {
+        API.storage.settings.get(["alwaysOnTop", "mini", "topOnTimeEnd"]).then(function(storage) {
+            if (attentionSeconds > 0) {
+                if (storage.topOnTimeEnd) {
+                    API.window.get().setAlwaysOnTop(true);
+                    API.window.get().drawAttention();
+                    API.window.get().clearAttention();
+                }
+                attentionSeconds--;
+                return;
+            } else if (attentionSeconds === 0) {
                 API.window.get().setAlwaysOnTop(storage.alwaysOnTop ? true : false);
-            });
-            attentionSeconds = -1;
-        }
+                if (storage.mini && !API.window.mini.is()) {
+                    API.window.mini.on();
+                }
+                attentionSeconds = false;
+            }
+        });
     }
 
     // Recurrent countdown
@@ -391,7 +395,13 @@ API.timer = (function() {
         API.dom.updateTime(data.time.minute, data.time.second);
 
         if (data.time.minute === 0 && data.time.second === 3) {
-            attentionTime = 6;
+            attentionTime = 8;
+            API.storage.settings.get(["expandOnTimeEnd"]).then(function(storage) {
+                if (storage.expandOnTimeEnd && API.window.mini.is()) {
+                    API.window.resize("standard");
+                    API.dom.getTimerContainer().classList.remove("mini");
+                }
+            });
         }
 
         // If countdown reaches the end
@@ -418,11 +428,72 @@ API.timer = (function() {
         attention(attentionTime);
     }
 
+    // Fast countdown (for skipping breaks, for example)
+    function fastCountdown(next, startNow) {
+        var minute = data.time.minute;
+        var second = data.time.second;
+        next = next || "work";
+
+        if (startNow) {
+            stop();
+            data.time.break = data.time.break+(minute * 60) + second;
+            if (data.time.break > (20 * 60)) {
+                data.time.break = 20 * 60;
+            }
+            console.log(data.time.break);
+        }
+        if (minute > 10) {
+            data.time.second = second - 40;
+            setTimeout(function() {
+                fastCountdown(next);
+            }, 10);
+
+        } else if (minute > 3) {
+            data.time.second = second - 30;
+            setTimeout(function() {
+                fastCountdown(next);
+            }, 20);
+
+        } else if (minute > 0) {
+            data.time.second = data.time.second - 13;
+            setTimeout(function() {
+                fastCountdown(next);
+            }, 40);
+
+        } else if (second > 8) {
+            data.time.second = second - 6;
+            setTimeout(function() {
+                fastCountdown(next);
+            }, 70);
+
+        } else {
+            data.time.second = second - 1;
+
+            // End actions
+            if (minute === 0 && second === 2) {
+                countdown(next);
+            } else {
+                setTimeout(function() {
+                    fastCountdown(next);
+                }, 120);
+            }
+        }
+        if (second < 0) {
+            data.time.second = 60 + second;
+            data.time.minute--;
+        }
+
+        // Update time element
+        API.dom.updateTime(data.time.minute, data.time.second);
+    }
+
     // Stops the timer
-    function stop(callback) {
+    function stop(callback, resetWorkTimes) {
         clearTimeout(data.countdownTimeout);
         attention(0);
-        API.storage.cache.set("workTimeCount", 0);
+        if (resetWorkTimes) {
+            API.storage.cache.set("workTimeCount", 0);
+        }
         if (callback) {
             callback();
         }

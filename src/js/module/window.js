@@ -16,7 +16,7 @@ API.window = (function() {
         },
         settings: {
             width: 224,
-            height: 294
+            height: 664
         }
     };
 
@@ -36,7 +36,8 @@ API.window = (function() {
 
     // Toggles the window on top option
     function togglePin() {
-        get().setAlwaysOnTop(!isPinned());        
+        get().setAlwaysOnTop(!isPinned());
+        get().setVisibleOnAllWorkspaces(!isPinned());
         API.storage.settings.set("alwaysOnTop", !isPinned());
         return !isPinned();
     }

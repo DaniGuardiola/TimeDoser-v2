@@ -83,6 +83,10 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
     top: 60px;
     left: 0;
     color: #CE93D8;
+}
+
+#timer-container.mini #settings-button /deep/ iron-icon {
+    transition: transform 0.5s cubic-bezier(.55, 0, .1, 1);
     transform: rotate(-60deg);
 }
 
@@ -127,23 +131,32 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
 #timedoser-settings .time {
     font-weight: 600;
     margin-left: 2px;
+    width: 20px;
 }
 
 #timedoser-settings .settings-wrapper {
-    padding: 8px 0 8px 12px;
+    padding: 8px 0 8px 0;
     flex: 1;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
+#timedoser-settings .settings-wrapper>* {
+    padding-left: 12px;
+}
+
 #timedoser-settings .header {
     -webkit-app-region: drag;
-    padding-left: 12px;
+    padding-left: 4px;
     padding-right: 4px;
     width: 100%;
     height: 56px;
     background-color: var(--paper-blue-700);
     @apply(--shadow-elevation-2dp);
+}
+
+#timedoser-settings .subsection {
+    margin-top: 8px;
 }
 
 #timedoser-settings .header>paper-icon-button {
@@ -160,8 +173,13 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
 
 #timedoser-settings .title .subhead,
 #timedoser-settings .switch-setting .subhead {
-    margin-left: 10px;
     margin-top: 4px;
+    margin-left: 4px;
+}
+
+#timedoser-settings .title .subhead,
+#timedoser-settings .switch-setting .subhead:not(:first-child) {
+    margin-left: 10px;
 }
 
 #timedoser-settings .settings-wrapper .title {
@@ -270,7 +288,11 @@ body[status="break"] #mini-button {
     left: 40px;
     color: white;
     opacity: 1;
-    transition: opacity 0.25s 0.25s, color 0.5s, top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1), transform 0.5s cubic-bezier(.55, 0, .1, 1);
+    transition: opacity 0.25s 0.25s, color 0.5s, top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1);
+}
+
+#settings-button /deep/ iron-icon {
+    transition: transform 0.5s cubic-bezier(.55, 0, .1, 1);
 }
 
 #timer-text {

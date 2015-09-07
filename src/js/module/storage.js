@@ -154,14 +154,6 @@ API.storage = (function() {
             API.storage.settings.set("workTime", 25);
         }
 
-        if (!storage.hasOwnProperty("notifications")) {
-            API.storage.settings.set("notifications", true);
-        }
-
-        if (!storage.hasOwnProperty("audio")) {
-            API.storage.settings.set("audio", true);
-        }
-
         if (storage.hasOwnProperty("breakShortTime")) {
             if (!storage.hasOwnProperty("shortBreakTime")) {
                 API.storage.settings.set("shortBreakTime", storage.breakShortTime);
@@ -180,6 +172,26 @@ API.storage = (function() {
 
         } else if (!storage.hasOwnProperty("longBreakTime")) {
             API.storage.settings.set("longBreakTime", 15);
+        }
+
+        if (!storage.hasOwnProperty("workTimeAmount")) {
+            API.storage.settings.set("workTimeAmount", 4);
+        }
+
+        if (!storage.hasOwnProperty("notifications")) {
+            API.storage.settings.set("notifications", true);
+        }
+
+        if (!storage.hasOwnProperty("audio")) {
+            API.storage.settings.set("audio", true);
+        }
+
+        if (!storage.hasOwnProperty("expandOnTimeEnd")) {
+            API.storage.settings.set("expandOnTimeEnd", true);
+        }
+
+        if (!storage.hasOwnProperty("topOnTimeEnd")) {
+            API.storage.settings.set("topOnTimeEnd", true);
         }
 
     });

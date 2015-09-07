@@ -10,6 +10,7 @@
                 document.body.classList.add("minsizebug");
             }
         });
+        API.tools.i18nElement();
         API.storage.settings.get(["notFirstTime", "mini"]).then(function(storage) {
             API.dom.renderTimer(function() {
                 if (storage.mini) {

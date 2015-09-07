@@ -18,6 +18,7 @@
     <link rel="import" href="/bower_components/paper-slider/paper-slider.html">
     <link rel="import" href="/bower_components/paper-toggle-button/paper-toggle-button.html">
     <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
     <!-- Script 
     <script src="/js/script.js"></script>
 
@@ -46,47 +47,79 @@
     <template is="dom-bind">
         <div id="timedoser-settings" class="vertical-section">
             <div class="header title center horizontal layout">
-                <div class="text-title">Settings</div>
-                <div class="space"></div>
-                <paper-icon-button class="discard-button" icon="close"></paper-icon-button>
-                <paper-icon-button style="margin-right: 4px;" class="save-button" icon="done"></paper-icon-button>
+                <paper-icon-button i18nTitle="24" class="back-button" icon="arrow-back"></paper-icon-button>
+                <div msg="7" class="text-title">Settings</div>
             </div>
             <div class="settings-wrapper">
                 <div class="title center horizontal layout">
                     <iron-icon icon="work"></iron-icon>
-                    <div class="subhead">Work time</div>
+                    <div msg="8" class="subhead">Work time</div>
                 </div>
                 <div class="slider-setting center horizontal layout">
                     <span class="time subhead">{{workTime}}</span>
                     <paper-slider name="workTime" class="indigo" value="{{workTime}}" min="15" max="60" step="5"></paper-slider>
+                    <paper-tooltip msg="28" position="top" offset="-8">Length of a work interval in minutes</paper-tooltip>
                 </div>
                 <div class="title center horizontal layout">
                     <iron-icon icon="maps:local-cafe"></iron-icon>
-                    <div class="subhead">Short break time</div>
+                    <div msg="9" class="subhead">Short break time</div>
                 </div>
                 <div class="slider-setting center horizontal layout">
                     <span class="time subhead">{{shortBreakTime}}</span>
                     <paper-slider name="shortBreakTime" class="green" value="{{shortBreakTime}}" min="5" max="15" step="5"></paper-slider>
+                    <paper-tooltip msg="29" position="top" offset="-8">Length of a short break interval in minutes</paper-tooltip>
                 </div>
                 <div class="title center horizontal layout">
                     <iron-icon icon="event-seat"></iron-icon>
-                    <div class="subhead">Long break time</div>
+                    <div msg="10" class="subhead">Long break time</div>
                 </div>
                 <div class="slider-setting center horizontal layout">
                     <span class="time subhead">{{longBreakTime}}</span>
                     <paper-slider name="longBreakTime" class="light-green" value="{{longBreakTime}}" min="15" max="30" step="5"></paper-slider>
+                    <paper-tooltip msg="30" position="top" offset="-8">Length of a long break interval in minutes</paper-tooltip>
+                </div>
+                <div class="title center horizontal layout">
+                    <iron-icon icon="alarm-add"></iron-icon>
+                    <div msg="11" class="subhead">Work time amount</div>
+                </div>
+                <div class="slider-setting center horizontal layout">
+                    <span class="time subhead">{{workTimeAmount}}</span>
+                    <paper-slider name="workTimeAmount" class="light-green" value="{{workTimeAmount}}" min="2" max="10" step="1"></paper-slider>
+                    <paper-tooltip msg="31" position="top" offset="-8">Amount of work intervals until long break</paper-tooltip>
+                </div>
+                <div class="title center horizontal layout subsection">
+                    <iron-icon icon="hourglass-full"></iron-icon>
+                    <div msg="12" class="subhead">When time starts</div>
+                    <paper-tooltip msg="32" position="top" offset="-8">Actions that fire when an interval begins</paper-tooltip>
                 </div>
                 <div class="switch-setting center horizontal layout">
-                    <iron-icon icon="social:notifications"></iron-icon>
-                    <span class="subhead">Notifications</span>
+                    <span msg="13" class="subhead">Notification</span>
                     <div class="space"></div>
                     <paper-toggle-button name="notifications"></paper-toggle-button>
+                    <paper-tooltip msg="33" position="top" offset="-8">Display a notification</paper-tooltip>
                 </div>
                 <div class="switch-setting center horizontal layout">
-                    <iron-icon icon="av:volume-up"></iron-icon>
-                    <span class="subhead">Audio</span>
+                    <span msg="14" class="subhead">Sound</span>
                     <div class="space"></div>
                     <paper-toggle-button name="audio"></paper-toggle-button>
+                    <paper-tooltip msg="34" position="top" offset="-8">Play a notification sound</paper-tooltip>
+                </div>
+                <div class="title center horizontal layout subsection">
+                    <iron-icon icon="hourglass-empty"></iron-icon>
+                    <div msg="15" class="subhead">When time ends</div>
+                    <paper-tooltip msg="35" position="top" offset="-8">Actions that fire when an interval is ending</paper-tooltip>
+                </div>
+                <div class="switch-setting center horizontal layout">
+                    <span msg="16" class="subhead">Expand</span>
+                    <div class="space"></div>
+                    <paper-toggle-button name="expandOnTimeEnd"></paper-toggle-button>
+                    <paper-tooltip msg="36" position="top" offset="-8">If the app is collapsed it will expand to get your attention, after a few seconds it gets collapsed again</paper-tooltip>
+                </div>
+                <div class="switch-setting center horizontal layout">
+                    <span msg="17" class="subhead">Get on top</span>
+                    <div class="space"></div>
+                    <paper-toggle-button name="topOnTimeEnd"></paper-toggle-button>
+                    <paper-tooltip msg="37" position="top" offset="-8">If the app is not already on top of other windows, it will for a few seconds to make sure you notice</paper-tooltip>
                 </div>
             </div>
         </div>

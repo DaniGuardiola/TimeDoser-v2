@@ -6,7 +6,8 @@ API.dom = (function() {
         var close = document.createElement("paper-icon-button");
         close.id = "close-button";
         close.setAttribute("icon", "close");
-        close.setAttribute("title", "Close TimeDoser");
+        close.setAttribute("title", "Close");
+        close.setAttribute("i18nTitle", "18");
         close.addEventListener("click", function(event) {
             API.timer.stop(function() {
                 exitAnimation(event);
@@ -14,10 +15,13 @@ API.dom = (function() {
         });
 
         var pinClickListener = function(event) {
+            var button = event.currentTarget;
             if (API.window.togglePin()) {
-                event.currentTarget.setAttribute("icon", "visibility-off");
+                button.setAttribute("icon", "visibility-off");
+                button.setAttribute("title", button.getAttribute("i18n2"));
             } else {
-                event.currentTarget.setAttribute("icon", "visibility");
+                button.setAttribute("icon", "visibility");
+                button.setAttribute("title", button.getAttribute("i18n1"));
             }
         };
 
@@ -25,15 +29,21 @@ API.dom = (function() {
         var pin = document.createElement("paper-icon-button");
         pin.id = "pin-button";
         pin.setAttribute("icon", "visibility");
-        pin.setAttribute("title", "Show in top of other windows");
+        pin.setAttribute("title", "Show on top of other windows");
+        pin.setAttribute("i18n1", "19");
+        pin.setAttribute("i18nTitle", "19");
+        pin.setAttribute("i18n2", "20");
         pin.addEventListener("click", pinClickListener);
 
-        var miniClickListener = function() {
+        var miniClickListener = function(event) {
+            var button = event.currentTarget;
             if (API.window.mini.is()) {
                 API.window.mini.off();
+                button.setAttribute("title", button.getAttribute("i18n1"));
                 //event.currentTarget.setAttribute("icon", "chevron-left");
             } else {
                 API.window.mini.on();
+                button.setAttribute("title", button.getAttribute("i18n2"));
                 //event.currentTarget.setAttribute("icon", "chevron-right");
             }
         };
@@ -42,7 +52,11 @@ API.dom = (function() {
         var mini = document.createElement("paper-icon-button");
         mini.id = "mini-button";
         mini.setAttribute("icon", "chevron-left");
-        mini.setAttribute("title", "Toggle mini mode");
+        mini.setAttribute("title", "Show on top of other windows");
+        mini.setAttribute("i18n1", "21");
+        mini.setAttribute("i18nTitle", "21");
+        mini.setAttribute("i18n2", "22");
+        mini.setAttribute("title", "Collapse");
         mini.addEventListener("click", miniClickListener);
 
         // Create FAB
@@ -58,9 +72,11 @@ API.dom = (function() {
         API.storage.settings.get(["mini", "alwaysOnTop"]).then(function(storage) {
             if (storage.mini) {
                 container.classList.add("mini");
+                mini.setAttribute("title", mini.getAttribute("i18n2"));
             }
             if (storage.alwaysOnTop) {
                 pin.click();
+                pin.setAttribute("title", pin.getAttribute("i18n2"));
             }
         });
 
@@ -73,6 +89,7 @@ API.dom = (function() {
         var settings = document.createElement("paper-icon-button");
         settings.id = "settings-button";
         settings.setAttribute("icon", "settings");
+        settings.setAttribute("i18nTitle", "23");
         settings.setAttribute("title", "Open settings");
         settings.addEventListener("click", openSettings);
 
@@ -98,6 +115,39 @@ API.dom = (function() {
 
         // Execute load animation
         loadAnimation(callback);
+
+        // i18n
+        API.tools.i18nElement();
+    }
+
+    // Inserts a tooltip
+    function insertTooltip(where) {
+        var tooltip = document.createElement("paper-tooltip");
+        tooltip.textContent = where.getAttribute("tooltip") || where.getAttribute("title");
+        where.appendChild(tooltip);
+    }
+
+    // Disable or enable an element
+    function disableElement(element, enable, allBut) {
+        if (element.nodeType) {
+            if (enable) {
+                if (allBut && (allBut.indexOf(element) > -1)) {
+                    disableElement(element);
+                    return;
+                }
+                element.removeAttribute("disabled");
+            } else {
+                if (allBut && (allBut.indexOf(element) > -1)) {
+                    disableElement(element, true);
+                    return;
+                }
+                element.setAttribute("disabled", "");
+            }
+        } else if (element.constructor === Array || element.constructor === NodeList) {
+            for (var i = element.length - 1; i >= 0; i--) {
+                disableElement(element[i], enable, allBut);
+            }
+        }
     }
 
     // Gets the settings section
@@ -112,17 +162,14 @@ API.dom = (function() {
         var sliderDivs = settings.querySelectorAll(".slider-setting");
         var switches = settings.querySelectorAll("paper-toggle-button");
         var time, slider;
-        var discard = settings.querySelector(".discard-button");
-        var save = settings.querySelector(".save-button");
+        var back = settings.querySelector(".back-button");
 
-        discard.addEventListener("click", function() {
-            discardSettings();
-            closeSettings();
-        });
-        save.addEventListener("click", function() {
-            saveSettings();
-            closeSettings();
-        });
+        var elements = settings.querySelectorAll("paper-slider,paper-toggle-button,paper-icon-button");
+        elements = Array.prototype.slice.call(elements);
+
+        disableElement(elements);
+
+        back.addEventListener("click", closeSettings);
 
         API.storage.settings.getAll().then(function(settings) {
             var i;
@@ -133,31 +180,34 @@ API.dom = (function() {
                     slider.value = settings[slider.name];
                 }
                 slider.setAttribute("last-value", slider.value);
-                slider.addEventListener("immediate-value-change", updateSliderTime);
-                slider.addEventListener("change", updateSliderTime);
+                slider.addEventListener("immediate-value-change", updateSlider);
+                slider.addEventListener("change", updateSlider);
             }
             for (i = 0; i < switches.length; i++) {
                 if (settings[switches[i].getAttribute("name")]) {
                     switches[i].checked = settings[switches[i].getAttribute("name")];
                 }
                 switches[i].setAttribute("last-value", switches[i].checked);
+                switches[i].addEventListener("change", updateSwitch);
             }
         });
 
     }
 
-    function updateSliderTime(event, value) {
+    function updateSlider(event, value) {
         var slider = event.currentTarget;
         var div = slider.parentNode;
         var time = div.querySelector(".time");
 
-        console.log("UPDATED TIME function LOL");
-        console.log(time);
         value = value || slider.immediateValue;
-        console.log(value);
         time.textContent = value;
+        API.storage.settings.set(slider.name, value);
         //slider.value = value;
-        console.log(time);
+    }
+
+    function updateSwitch(event) {
+        var button = event.currentTarget;
+        API.storage.settings.set(button.getAttribute("name"), button.checked);
     }
 
     // Opens the settings section
@@ -167,12 +217,13 @@ API.dom = (function() {
         }
         API.window.resize("settings");
         getTimerContainer().style.height = "100%";
+        var height = window.screen.avalHeight < 664 ? window.screen.avalHeight : 664;
         var target = event && event.currentTarget ? event.currentTarget : false;
         API.timer.changeStatus({
             color: "#2196f3",
             cover: true,
             time: false,
-            expand: 570,
+            expand: height * 2,
             close: true,
             fab: {
                 position: "right",
@@ -180,53 +231,22 @@ API.dom = (function() {
             },
             callback: function() {
                 getSettings().classList.add("on");
+                var elements = getSettings().querySelectorAll("paper-slider,paper-toggle-button,paper-icon-button");
+                elements = Array.prototype.slice.call(elements);
+                var allElements = document.querySelectorAll("paper-slider,paper-toggle-button,paper-icon-button,paper-fab");
+                allElements = Array.prototype.slice.call(allElements);
+                disableElement(allElements, false, elements);
             }
         }, target);
-    }
-
-    // Discard settings
-    function discardSettings() {
-        var settings = getSettings();
-        var i;
-        // Sliders
-        var sliders = settings.querySelectorAll("paper-slider");
-        for (i = sliders.length - 1; i >= 0; i--) {
-            sliders[i].value = sliders[i].getAttribute("last-value");
-            updateSliderTime({
-                currentTarget: sliders[i]
-            }, sliders[i].getAttribute("last-value"));
-        }
-        // Switches
-        var switches = settings.querySelectorAll("paper-toggle-button");
-        for (i = switches.length - 1; i >= 0; i--) {
-            switches[i].checked = switches[i].getAttribute("last-value") === "true";
-        }
-    }
-
-    // Saves the settings
-    function saveSettings() {
-        var settings = getSettings();
-        var i;
-        // Sliders
-        var sliders = settings.querySelectorAll("paper-slider");
-        for (i = sliders.length - 1; i >= 0; i--) {
-            API.storage.settings.set(sliders[i].name, sliders[i].value);
-            sliders[i].setAttribute("last-value", sliders[i].value);
-        }
-        // Switches
-        var switches = settings.querySelectorAll("paper-toggle-button");
-        for (i = switches.length - 1; i >= 0; i--) {
-            API.storage.settings.set(switches[i].getAttribute("name"), switches[i].checked);
-            switches[i].setAttribute("last-value", switches[i].checked);
-        }
     }
 
     // Closes the settings section
     function closeSettings() {
         var target = event && event.currentTarget ? event.currentTarget : false;
+        var height = window.screen.avalHeight < 664 ? window.screen.avalHeight : 664;
         API.timer.changeStatus({
             color: "#9c27b0",
-            expand: 680,
+            expand: height * 2 + 10,
             time: false,
             close: true,
             cover: true,
@@ -245,6 +265,11 @@ API.dom = (function() {
                         API.window.resize("standard");
                     }
                 });
+                var elements = getSettings().querySelectorAll("paper-slider,paper-toggle-button,paper-icon-button");
+                elements = Array.prototype.slice.call(elements);
+                var allElements = document.querySelectorAll("paper-slider,paper-toggle-button,paper-icon-button,paper-fab");
+                allElements = Array.prototype.slice.call(allElements);
+                disableElement(allElements, true, elements);
                 getSettings().classList.remove("on");
                 getTimerContainer().style.height = "";
             }
