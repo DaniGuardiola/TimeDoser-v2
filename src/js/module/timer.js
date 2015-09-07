@@ -488,11 +488,12 @@ API.timer = (function() {
     }
 
     // Stops the timer
-    function stop(callback, resetWorkTimes) {
+    function stop(callback, resetStats) {
         clearTimeout(data.countdownTimeout);
         attention(0);
-        if (resetWorkTimes) {
+        if (resetStats) {
             API.storage.cache.set("workTimeCount", 0);
+            data.time.break = 0;
         }
         if (callback) {
             callback();
