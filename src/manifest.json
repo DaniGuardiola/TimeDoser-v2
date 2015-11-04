@@ -7,14 +7,17 @@
         }
     },
     "manifest_version": 2,
-    "version": "0.1.5.6",
+    "version": "0.0.9.4",
     "icons": {
         "128": "meta/icon-128.png"
     },
     "permissions": [
         "app.window.alwaysOnTop",
         "storage",
-        "notifications"
+        "notifications",
+        "https://www.google-analytics.com/",
+        "app.window.fullscreen",
+        "app.window.fullscreen.overrideEsc"
     ],
     "commands": {
         "start-stop-command": {

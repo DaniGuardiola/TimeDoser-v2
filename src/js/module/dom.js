@@ -93,21 +93,36 @@ API.dom = (function() {
         settings.setAttribute("title", "Open settings");
         settings.addEventListener("click", openSettings);
 
+        // Create pause button
+        var pause = document.createElement("paper-icon-button");
+        pause.id = "pause-button";
+        pause.setAttribute("icon", "av:pause");
+        pause.setAttribute("i18nTitle", "38");
+        pause.setAttribute("title", "Pause");
+        pause.addEventListener("click", API.timer.pause);
+
         // Create animation helper
         var animationHelper = document.createElement("div");
         animationHelper.id = "animation-helper";
         animationHelper.style.transition = "none";
+
+        // Create blocker element
+        var blocker = document.createElement("div");
+        blocker.id = "blocker";
+        blocker.style.transition = "none";
 
         // Append elements to container
         container.appendChild(close);
         container.appendChild(pin);
         container.appendChild(mini);
         container.appendChild(settings);
+        container.appendChild(pause);
         container.appendChild(time);
         container.appendChild(animationHelper);
         container.appendChild(fab);
 
         // Append container to body
+        document.body.appendChild(blocker);
         document.body.appendChild(container);
 
         // Initialize the settings
@@ -118,14 +133,34 @@ API.dom = (function() {
 
         // i18n
         API.tools.i18nElement();
+
+        fixTooltips();
+    }
+
+    // Fixes tooltips
+    function fixTooltips() {
+        var tooltips = document.querySelectorAll("paper-tooltip");
+        for (var i = tooltips.length - 1; i >= 0; i--) {
+            tooltips[i].show();
+            tooltips[i].hide();
+            tooltips[i].show();
+            tooltips[i].hide();
+            tooltips[i].show();
+            tooltips[i].hide();
+            tooltips[i].show();
+            tooltips[i].hide();
+        }
+        // I know how bad it looks
     }
 
     // Inserts a tooltip
+    /*
     function insertTooltip(where) {
         var tooltip = document.createElement("paper-tooltip");
         tooltip.textContent = where.getAttribute("tooltip") || where.getAttribute("title");
         where.appendChild(tooltip);
     }
+    */
 
     // Disable or enable an element
     function disableElement(element, enable, allBut) {
@@ -319,6 +354,11 @@ API.dom = (function() {
         return document.getElementById("animation-helper");
     }
 
+    // Gets the animation helper
+    function getBlocker() {
+        return document.getElementById("blocker");
+    }
+
     // Gets the timer text
     function getTime() {
         return document.getElementById("timer-text");
@@ -342,6 +382,11 @@ API.dom = (function() {
     // Gets the settings button
     function getSettingsButton() {
         return document.getElementById("settings-button");
+    }
+
+    // Gets the pause button
+    function getPauseButton() {
+        return document.getElementById("pause-button");
     }
 
     // Updates the time text and the window title
@@ -377,11 +422,14 @@ API.dom = (function() {
         getTimerContainer: getTimerContainer,
         getFAB: getFAB,
         getAnimationHelper: getAnimationHelper,
+        getBlocker: getBlocker,
         getTime: getTime,
         getClose: getClose,
         getPin: getPin,
         getMini: getMini,
         getSettingsButton: getSettingsButton,
-        updateTime: updateTime
+        getPauseButton: getPauseButton,
+        updateTime: updateTime,
+        fixTooltips: fixTooltips
     };
 })();

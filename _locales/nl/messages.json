@@ -1,0 +1,20 @@
+{
+"appname":{"message":"TimeDoser"},
+"appdescription":{"message":"Doseer je tijd"},
+"msg1":{"message":"werk"},
+"msg2":{"message":"pauze"},
+"msg3":{"message":"Werk!"},
+"msg4":{"message":"Tijd om te focussen en productief te zijn"},
+"msg5":{"message":"Pauze"},
+"msg6":{"message":"Inademen... Uitademen... Inademen..."},
+"msg7":{"message":"Instellingen"},
+"msg14":{"message":"Geluid"},
+"msg16":{"message":"Uitklappen"},
+"msg18":{"message":"Sluiten"},
+"msg19":{"message":"Toon boven andere vensters"},
+"msg20":{"message":"Verberg achter andere vensters"},
+"msg21":{"message":"Inklappen"},
+"msg22":{"message":"Uitklappen"},
+"msg23":{"message":"Instellingen"},
+"msg33":{"message":"Toon een notificatie"}
+}

@@ -96,6 +96,10 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
     left: 8px;
 }
 
+body.minsizebug #timer-container.mini #timer-text {
+    left: 19px;
+}
+
 #timedoser-settings {
     position: absolute;
     display: flex;
@@ -209,7 +213,7 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
     overflow: hidden;
     top: 0;
     left: 0;
-    transition: top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1);
+    transition: top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1), transform 0.5s cubic-bezier(.55, 0, .1, 1);
     @apply(--shadow-elevation-3dp);
 }
 
@@ -249,26 +253,30 @@ body.minsizebug[status="standby"] #timer-container.mini #main-fab {
 
 #close-button,
 #pin-button,
-#mini-button {
+#mini-button,
+#pause-button {
     transition: opacity 0.25s 0.25s, transform 0.5s;
     opacity: 1;
 }
 
 body[status="standby"] #close-button,
 body[status="standby"] #pin-button,
-body[status="standby"] #mini-button {
+body[status="standby"] #mini-button,
+body[status="standby"] #pause-button {
     color: #CE93D8;
 }
 
 body[status="work"] #close-button,
 body[status="work"] #pin-button,
-body[status="work"] #mini-button {
+body[status="work"] #mini-button,
+body[status="work"] #pause-button {
     color: #9FA8DA;
 }
 
 body[status="break"] #close-button,
 body[status="break"] #pin-button,
-body[status="break"] #mini-button {
+body[status="break"] #mini-button,
+body[status="break"] #pause-button {
     color: #80CBC4;
 }
 
@@ -280,6 +288,13 @@ body[status="break"] #mini-button {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+#pause-button {
+    position: absolute;
+    color: white;
+    bottom: 0;
+    left: 0;
 }
 
 #settings-button {
@@ -320,7 +335,8 @@ body[status="break"] #mini-button {
 #close-button:not(.on),
 #pin-button:not(.on),
 #mini-button:not(.on),
-#settings-button:not(.on) {
+#settings-button:not(.on),
+#pause-button:not(.on) {
     opacity: 0;
     pointer-events: none;
 }
@@ -384,6 +400,26 @@ body.exit #timer-container>* {
 
 body.exit {
     opacity: 0;
+}
+
+body.blocked #blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--paper-teal-500);
+}
+
+body.blocked #timer-container {
+    box-shadow: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body.blocked #timer-container paper-icon-button {
+    display: none;
 }
 
 

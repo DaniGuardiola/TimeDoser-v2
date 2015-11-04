@@ -37,5 +37,6 @@
 "msg34":{"message":"Play a notification sound"},
 "msg35":{"message":"Actions that fire when an interval is ending"},
 "msg36":{"message":"If the app is collapsed it will expand for a few seconds to get your attention"},
-"msg37":{"message":"The app will be on top of other windows for a few seconds to get your attention"}
+"msg37":{"message":"The app will be on top of other windows for a few seconds to get your attention"},
+"msg38":{"message":"Pause"}
 }

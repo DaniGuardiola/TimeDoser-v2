@@ -5,7 +5,7 @@
 "msg2":{"message":"descanso"},
 "msg3":{"message":"¡A trabajar!"},
 "msg4":{"message":"Es hora de concentrarse y producir"},
-"msg5":{"message":"Decanso"},
+"msg5":{"message":"Descanso"},
 "msg6":{"message":"Inspira... Espira... Inspira..."},
 "msg7":{"message":"Configuración"},
 "msg8":{"message":"Tiempo de trabajo"},
@@ -37,5 +37,6 @@
 "msg34":{"message":"Reproducir un sonido de notificación"},
 "msg35":{"message":"Acciones cuando un intervalo está acabando"},
 "msg36":{"message":"Si la aplicación está colapsada, se expandirá durante unos segundos para llamar tu atención"},
-"msg37":{"message":"La aplicación estará por encima de otras ventanas durante unos segundos para llamar tu atención"}
+"msg37":{"message":"La aplicación estará por encima de otras ventanas durante unos segundos para llamar tu atención"},
+"msg38":{"message":"Pausar"}
 }

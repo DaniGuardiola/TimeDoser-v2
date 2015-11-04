@@ -3,6 +3,7 @@ API.timer = (function() {
     // Data
     var data = {
         status: "none",
+        pause: false,
         changingStatus: false,
         countdownTimeout: false,
         time: {
@@ -24,6 +25,7 @@ API.timer = (function() {
         opt.time = opt.time !== null ? opt.time : false;
         opt.close = opt.close !== null ? opt.close : true;
         opt.settings = opt.settings !== null ? opt.settings : true;
+        opt.pause = opt.pause !== null ? opt.pause : true;
         opt.fab = opt.fab || {};
         opt.fab.fadein = opt.fab.fadein || false;
         opt.fab.position = opt.fab.position || "left";
@@ -44,6 +46,7 @@ API.timer = (function() {
         var pin = API.dom.getPin();
         var mini = API.dom.getMini();
         var settings = API.dom.getSettingsButton();
+        var pause = API.dom.getPauseButton();
 
         // Set target
         target = target || fab;
@@ -93,6 +96,7 @@ API.timer = (function() {
         pin.classList.remove("on");
         mini.classList.remove("on");
         settings.classList.remove("on");
+        pause.classList.remove("on");
 
         // Set FAB icon
         fab.setAttribute("icon", opt.fab.icon);
@@ -119,6 +123,7 @@ API.timer = (function() {
         var pin = API.dom.getPin();
         var mini = API.dom.getMini();
         var settings = API.dom.getSettingsButton();
+        var pause = API.dom.getPauseButton();
 
         // Get opt from tmp
         var opt = tmp.opt;
@@ -163,6 +168,11 @@ API.timer = (function() {
             settings.classList.add("on");
         }
 
+        // Show pause button
+        if (opt.pause) {
+            pause.classList.add("on");
+        }
+
         // Remove opt from tmp
         delete tmp.opt;
 
@@ -176,14 +186,19 @@ API.timer = (function() {
         document.title = API.tools.i18n("appname");
         data.changingStatus = true;
         data.status = "standby";
+        data.pause = false;
+        var expand = API.window.mini.is() ? 140 : false;
         API.storage.settings.get(["mini"]).then(function(storage) {
             statusChangeAnimation({
                 color: "#9c27b0",
                 time: false,
+                expand: expand,
                 close: true,
                 settings: true,
+                pause: false,
                 callback: function() {
                     document.body.removeAttribute("loading");
+                    API.dom.getPauseButton().setAttribute("icon", "av:pause");
                     data.changingStatus = false;
                 },
                 fab: {
@@ -198,6 +213,9 @@ API.timer = (function() {
     function setWorkStatus() {
         data.changingStatus = true;
         data.status = "work";
+        if (API.blocker.isBlocked()) {
+            API.blocker.unblock();
+        }
         API.storage.settings.get(["notifications"]).then(function(storage) {
             if (storage.notifications) {
                 API.notifications.work();
@@ -208,11 +226,14 @@ API.timer = (function() {
                 document.getElementById("audio-work").play();
             }
         });
+        var expand = API.window.mini.is() ? 140 : false;
         statusChangeAnimation({
             color: "#3f51b5",
             time: true,
+            expand: expand,
             close: false,
             settings: false,
+            pause: true,
             fab: {
                 position: "left",
                 icon: "av:stop"
@@ -245,16 +266,20 @@ API.timer = (function() {
                 document.getElementById("audio-break").play();
             }
         });
+        var expand = API.window.mini.is() ? 140 : false;
         statusChangeAnimation({
             color: "#009688",
+            expand: expand,
             time: true,
             close: true,
             settings: false,
+            pause: true,
             fab: {
                 position: "left",
                 icon: "av:skip-next"
             },
             callback: function() {
+                API.blocker.block();
                 API.storage.settings.get(["shortBreakTime", "longBreakTime", "workTimeAmount"]).then(function(storage) {
                     if (window.MUSIC_PLEASE) { // Easter egg
                         setTime(0, 1);
@@ -443,13 +468,13 @@ API.timer = (function() {
             console.log(data.time.break);
         }
         if (minute > 10) {
-            data.time.second = second - 40;
+            data.time.second = second - 41;
             setTimeout(function() {
                 fastCountdown(next);
             }, 10);
 
         } else if (minute > 3) {
-            data.time.second = second - 30;
+            data.time.second = second - 31;
             setTimeout(function() {
                 fastCountdown(next);
             }, 20);
@@ -460,8 +485,14 @@ API.timer = (function() {
                 fastCountdown(next);
             }, 40);
 
-        } else if (second > 8) {
+        } else if (second > 20) {
             data.time.second = second - 6;
+            setTimeout(function() {
+                fastCountdown(next);
+            }, 70);
+
+        } else if (second > 8) {
+            data.time.second = second - 3;
             setTimeout(function() {
                 fastCountdown(next);
             }, 70);
@@ -470,7 +501,7 @@ API.timer = (function() {
             data.time.second = second - 1;
 
             // End actions
-            if (minute === 0 && second === 2) {
+            if (minute === 0 && second === 1) {
                 countdown(next);
             } else {
                 setTimeout(function() {
@@ -478,10 +509,12 @@ API.timer = (function() {
                 }, 120);
             }
         }
-        if (second < 0) {
-            data.time.second = 60 + second;
+        if (data.time.second < 0) {
+            data.time.second = 60 + data.time.second;
             data.time.minute--;
         }
+
+        console.log(data.time.second);
 
         // Update time element
         API.dom.updateTime(data.time.minute, data.time.second);
@@ -500,6 +533,23 @@ API.timer = (function() {
         }
     }
 
+    // Pause the timer
+    function pause() {
+        if (getStatus() === "work" || getStatus() === "break") {
+            var button = API.dom.getPauseButton();
+            if (data.pause === true) {
+                button.setAttribute("icon", "av:pause");
+                data.time.second++;
+                countdown();
+                data.pause = false;
+            } else {
+                button.setAttribute("icon", "av:play-arrow");
+                stop();
+                data.pause = true;
+            }
+        }
+    }
+
     return {
         setStatus: setStatus,
         getStatus: getStatus,
@@ -508,6 +558,7 @@ API.timer = (function() {
         data: data,
         setTime: setTime,
         countdown: countdown,
-        stop: stop
+        stop: stop,
+        pause: pause
     };
 })();
