@@ -1,20 +1,29 @@
 {
   "scripts": {
-    "setup": "./setup.sh"
+    "setup": ". tasks/setup.sh",
+    "build:dev": "nodejs tasks/build-dev.js",
+    "build": "npm run build:dev && nodejs tasks/build-prod.js"
   },
   "engines": {
     "node": ">= 0.10.0"
   },
   "devDependencies": {
+    "concatenate-files": "latest",
+    "fs-extra": "latest",
     "grunt": "~0.4.5",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-uglify": "~0.5.0",
-    "grunt-contrib-cssmin": "~0.12.3",
-    "grunt-contrib-copy": "~0.8.0",
-    "grunt-json-minify": "~0.4.0",
     "grunt-contrib-clean": "~0.6.0",
-    "grunt-exec": "~0.4.6",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-copy": "~0.8.0",
+    "grunt-contrib-cssmin": "~0.12.3",
     "grunt-contrib-htmlmin": "~0.4.0",
-    "grunt-minify-html": "~2.0.0"
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-exec": "~0.4.6",
+    "grunt-json-minify": "~0.4.0",
+    "grunt-minify-html": "~2.0.0",
+    "jsdoc": "^3.4.0",
+    "node-archiver": "latest",
+    "remove-use-strict": "latest",
+    "uglify-js": "latest",
+    "watch": "latest"
   }
 }

@@ -1,0 +1,468 @@
+<style is="custom-style">html,
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+
+/* Classes */
+
+.space {
+    height: 0;
+    flex: 1;
+}
+
+.subhead {
+    @apply(--paper-font-subhead);
+}
+
+.text-title {
+    @apply(--paper-font-title);
+}
+
+
+/* Dragging */
+
+#timer-container {
+    -webkit-app-region: drag;
+}
+
+#timer-container>* {
+    -webkit-app-region: no-drag;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Elements */
+
+#timer-container.mini {
+    height: 100px;
+    width: 100px;
+}
+
+#timer-container.mini #mini-button {
+    transform: rotate(180deg);
+}
+
+body.minsizebug #timer-container.mini {
+    width: 122px;
+}
+
+body:not([status="standby"]):not([loading]) #timer-container.mini #main-fab {
+    left: 100px;
+    top: 22px;
+}
+
+body.minsizebug:not([status="standby"]) #timer-container.mini #main-fab {
+    left: 122px;
+    top: 22px;
+}
+
+body[status="standby"] #timer-container.mini #main-fab,
+body[loading] #timer-container.mini #main-fab {
+    left: 22px;
+    top: 22px;
+}
+
+body.minsizebug[status="standby"] #timer-container.mini #main-fab {
+    left: 33px;
+    top: 22px;
+}
+
+#timer-container.mini #settings-button {
+    top: 60px;
+    left: 0;
+    color: #CE93D8;
+}
+
+#timer-container.mini #settings-button /deep/ iron-icon {
+    transition: transform 0.5s cubic-bezier(.55, 0, .1, 1);
+    transform: rotate(-60deg);
+}
+
+#timer-container.mini #timer-text {
+    right: initial;
+    top: 30px;
+    left: 8px;
+}
+
+body.minsizebug #timer-container.mini #timer-text {
+    left: 19px;
+}
+
+#timedoser-settings {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background: var(--paper-blue-500);
+    color: #fff;
+}
+
+#timedoser-settings:not(.on) {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#timedoser-settings * {
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+#timedoser-settings:not(.on) * {
+    opacity: 0;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+#timedoser-settings .time {
+    font-weight: 600;
+    margin-left: 2px;
+    width: 20px;
+}
+
+#timedoser-settings .settings-wrapper {
+    padding: 8px 0 8px 0;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#timedoser-settings .settings-wrapper>* {
+    padding-left: 12px;
+}
+
+#timedoser-settings .header {
+    -webkit-app-region: drag;
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 100%;
+    height: 56px;
+    background-color: var(--paper-blue-700);
+    @apply(--shadow-elevation-2dp);
+}
+
+#timedoser-settings .subsection {
+    margin-top: 8px;
+}
+
+#timedoser-settings .header>paper-icon-button {
+    -webkit-app-region: no-drag;
+}
+
+#timedoser-settings paper-slider {
+    width: 100%;
+    --paper-slider-knob-color: var(--paper-purple-500);
+    --paper-slider-active-color: var(--paper-purple-500);
+    --paper-slider-disabled-knob-color: var(--paper-purple-500);
+    cursor: pointer;
+}
+
+#timedoser-settings .title .subhead,
+#timedoser-settings .switch-setting .subhead {
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+#timedoser-settings .title .subhead,
+#timedoser-settings .switch-setting .subhead:not(:first-child) {
+    margin-left: 10px;
+}
+
+#timedoser-settings .settings-wrapper .title {
+    height: 32px;
+}
+
+#timedoser-settings .slider-setting {
+    height: 48px;
+}
+
+#timedoser-settings .switch-setting {
+    height: 48px;
+}
+
+#timedoser-settings .switch-setting paper-toggle-button {
+    --paper-toggle-button-checked-bar-color: var(--paper-purple-500);
+    --paper-toggle-button-checked-button-color: var(--paper-purple-500);
+    --paper-toggle-button-checked-ink-color: var(--paper-purple-500);
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+#timer-container {
+    width: 224px;
+    height: 112px;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    transition: top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1), transform 0.5s cubic-bezier(.55, 0, .1, 1);
+    @apply(--shadow-elevation-3dp);
+}
+
+#main-fab {
+    --paper-fab-background: var(--paper-blue-500);
+    --paper-fab-keyboard-focus-background: var(--paper-blue-700);
+    opacity: 1;
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    transition: left 0.5s cubic-bezier(.55, 0, .1, 1), top, 0.5s cubic-bezier(.55, 0, .1, 1), opacity 0.5s;
+}
+
+#main-fab:not(.on) {
+    opacity: 0;
+}
+
+#main-fab[position="right"] {
+    left: 140px;
+}
+
+#animation-helper {
+    border-radius: 50%;
+    position: absolute;
+    transition-property: width, height, top, left;
+    transition-duration: 0.5s;
+    -webkit-app-region: drag;
+}
+
+#animation-helper:not(.on) {
+    display: none;
+}
+
+#animation-helper.cover {
+    z-index: 9999;
+}
+
+#close-button,
+#pin-button,
+#mini-button,
+#pause-button {
+    transition: opacity 0.25s 0.25s, transform 0.5s;
+    opacity: 1;
+}
+
+body[status="standby"] #close-button,
+body[status="standby"] #pin-button,
+body[status="standby"] #mini-button,
+body[status="standby"] #pause-button {
+    color: #CE93D8;
+}
+
+body[status="work"] #close-button,
+body[status="work"] #pin-button,
+body[status="work"] #mini-button,
+body[status="work"] #pause-button {
+    color: #9FA8DA;
+}
+
+body[status="break"] #close-button,
+body[status="break"] #pin-button,
+body[status="break"] #mini-button,
+body[status="break"] #pause-button {
+    color: #80CBC4;
+}
+
+#pin-button {
+    float: right;
+}
+
+#mini-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#pause-button {
+    position: absolute;
+    color: white;
+    bottom: 0;
+    left: 0;
+}
+
+#settings-button {
+    position: absolute;
+    top: 36px;
+    left: 40px;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.25s 0.25s, color 0.5s, top 0.5s cubic-bezier(.55, 0, .1, 1), left 0.5s cubic-bezier(.55, 0, .1, 1);
+}
+
+#settings-button /deep/ iron-icon {
+    transition: transform 0.5s cubic-bezier(.55, 0, .1, 1);
+}
+
+#timer-text {
+    position: absolute;
+    opacity: 1;
+    color: #fff;
+    top: 36.5px;
+    left: 112px;
+    width: 84px;
+    transform: translate(0);
+    transition: opacity 0.25s 0.25s, left 0.5s cubic-bezier(.55, 0, .1, 1), top 0.5s cubic-bezier(.55, 0, .1, 1);
+    -webkit-app-region: drag;
+    @apply(--paper-font-display1);
+    /* Temporal until I get ^ that working */
+    font-family: 'Roboto', 'Noto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 40px;
+}
+
+#timer-text:not(.on),
+#close-button:not(.on),
+#pin-button:not(.on),
+#mini-button:not(.on),
+#settings-button:not(.on),
+#pause-button:not(.on) {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Tour */
+
+body.tour #timer-container {
+    top: 64px;
+    left: 64px;
+    cursor: none;
+}
+
+body.tour #timer-container>* {
+    pointer-events: none;
+}
+
+#tour-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+
+/* Themes */
+
+
+/* Stand by */
+
+body[status="standby"] #timer-container {
+    background-color: var(--paper-purple-500);
+}
+
+
+/* Work */
+
+body[status="work"] #timer-container {
+    background-color: var(--paper-indigo-500);
+}
+
+
+/* Break */
+
+body[status="break"] #timer-container {
+    background-color: var(--paper-teal-500);
+}
+
+
+/* Exit */
+
+body.exit #timer-container {
+    background-color: #fff;
+}
+
+body.exit #timer-container>* {
+    display: none;
+}
+
+body.exit {
+    opacity: 0;
+}
+
+body.blocked #blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--paper-teal-500);
+}
+
+body.blocked #timer-container {
+    box-shadow: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body.blocked #timer-container paper-icon-button {
+    display: none;
+}
+
+
+/* Sexy scrollbars please */
+
+::-webkit-scrollbar {
+    background: #F5F5F5;
+    overflow: visible;
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    border-width: 2px 4px;
+    min-width: 40px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    border-width: 4px 2px;
+    min-height: 40px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #9E9E9E;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.10), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #757575;
+}
+</style>

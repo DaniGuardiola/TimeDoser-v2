@@ -38,7 +38,7 @@
     }
 
     function openPopup(url) {
-        window.open(url);
+        //window.open(url);
     }
 
     window.addEventListener("load", start);
