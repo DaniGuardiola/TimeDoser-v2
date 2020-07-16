@@ -1,10 +1,13 @@
-# TimeDoser
-Dosify your time
+# TimeDoser v2
 
-# Setup
+Dosify your time.
+
+> This version of TimeDoser has been deprecated. Stay tuned for version 3.
+
+## Setup
 ```npm run setup``` then drag & drop the bin/ folder to the chrome://extensions page.
 
-# Build
+## Build
 Run ```grunt``` and reload the app from the chrome://extensions page.
 
 Enjoy!
